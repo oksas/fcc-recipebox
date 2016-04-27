@@ -1,0 +1,25 @@
+{
+  "name": "fcc-recipebox",
+  "version": "1.0.0",
+  "description": "Small React app that allows creation and storage of recipes. ",
+  "main": "index.js",
+  "scripts": {
+    "pregit": "git add .",
+    "git": "git commit -m",
+    "postgit": "git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oksas/fcc-recipebox.git"
+  },
+  "keywords": [
+    "react",
+    "freecodecamp"
+  ],
+  "author": "John Oksasoglu",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/oksas/fcc-recipebox/issues"
+  },
+  "homepage": "https://github.com/oksas/fcc-recipebox#readme"
+}
