@@ -4,7 +4,7 @@ class Thing extends React.Component {
   render() {
     return (
       <div>
-        Hello!
+        Hello! haha yooohaha
       </div>
     );
   }
