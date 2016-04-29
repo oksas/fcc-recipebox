@@ -9,9 +9,17 @@ import Thing from "../Thing";
 describe("Thing", () => {
   it("says hello", () => {
     let renderer = createRenderer();
-    renderer.render(<Thing/>);
+    renderer.render(<Thing onClick={() => {}} />);
     let actual = renderer.getRenderOutput();
-    let expected = <div>Hello!</div>;
+    let expected = <div onClick={() => {}}>Hello!</div>;
     expect(actual).toEqualJSX(expected);
+  });
+
+  it("clicks", () => {
+    let renderer = createRenderer();
+    let clicker = expect.createSpy();
+    renderer.render(<Thing onClick={clicker} />);
+    renderer.getRenderOutput().props.onClick();
+    expect(clicker).toHaveBeenCalled();
   });
 });
