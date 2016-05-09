@@ -1,0 +1,10 @@
+{
+  "parser": "babel-eslint",
+  "extends": "standard",
+  "ecmaVersion": 6,
+  "rules": {
+      "semi": ["error", "always"],
+      "space-before-function-paren": ["error", "never"],
+      "quotes": ["error", "double"]
+    }
+}
