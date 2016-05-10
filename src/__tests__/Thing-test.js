@@ -6,6 +6,6 @@ import Thing from "../Thing";
 
 describe("Thing", () => {
   it("says hello", () => {
-    expect(shallow(<Thing />).contains(<div className="test" />)).to.equal(true);
+    expect(shallow(<Thing />).contains(<div className="hah" />)).to.equal(true);
   });
 });
