@@ -1,3 +1,6 @@
+/*eslint no-unused-vars: 0*/
+/*eslint no-undef: 0*/
+
 import React from "react";
 import { expect } from "chai";
 import { mount, shallow, render } from "enzyme";
