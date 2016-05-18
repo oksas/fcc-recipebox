@@ -1,5 +1,7 @@
 require("babel-register")();
-require("ignore-styles");
+
+var mockCssModules = require("mock-css-modules");
+mockCssModules.register(["sass", ".scss"]);
 
 var jsdom = require("jsdom").jsdom;
 
@@ -19,3 +21,16 @@ global.navigator = {
 };
 
 documentRef = document;
+
+// Test helpers
+var React = require("react");
+var chai = require("chai");
+var sinon = require("sinon");
+var enzyme = require("enzyme");
+
+global.React = React;
+global.expect = chai.expect;
+global.spy = sinon.spy;
+global.mount = enzyme.mount;
+global.shallow = enzyme.shallow;
+global.render = enzyme.render;

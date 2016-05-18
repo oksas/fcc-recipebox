@@ -7,8 +7,8 @@
     "pregit": "git add .",
     "git": "git commit -m",
     "postgit": "git push",
-    "test": "mocha src/__tests__/.setup.js src/__tests__/*-test.js",
-    "test:watch": "mocha src/__tests__/.setup.js src/__tests__/*-test.js --watch --reporter min",
+    "test": "mocha test/.setup.js test/*.spec.js",
+    "test:watch": "mocha test/.setup.js test/*.spec.js --watch --reporter spec --harmony-proxies",
     "start": "node server"
   },
   "repository": {
@@ -52,8 +52,9 @@
     "eslint-config-standard": "^5.3.1",
     "eslint-plugin-promise": "^1.1.0",
     "eslint-plugin-standard": "^1.3.2",
-    "ignore-styles": "^2.0.0",
     "jsdom": "^9.0.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "mock-css-modules": "^1.0.0",
+    "sinon": "^1.17.4"
   }
 }
