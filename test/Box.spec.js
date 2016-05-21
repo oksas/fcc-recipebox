@@ -4,32 +4,50 @@
 import Box from "../src/Box";
 import { spring } from "react-motion";
 
-function getItemRowIndex(index, rowLen) {
-  return Math.ceil((index + 1) / rowLen) - 1;
-}
-
-function getIndexInRow(index, rowLen) {
-  return index % rowLen;
-}
-
 describe("Box", () => {
-  it("has .active-class when index is 0", () => {
-    const index = 1;
-    const width = 8;
-    const margin = 2;
-    const units = "rem";
-    const rowLen = 4;
-    const x = (width + margin) * getIndexInRow(index, rowLen);
-    const y = (width + margin) * getItemRowIndex(index, rowLen);
+  describe("classes", () => {
     const item = { color: "red", title: "rofl" };
-    const style = {
-      backgroundColor: "red",
-      translateX: spring(x),
-      translateY: spring(y)
+    const count = 8;
+    const gridConfig = {
+      width: 8,
+      margin: 2,
+      units: "rem",
+      rowLen: 4
     };
 
-    const wrapper = mount(<Box style={style} item={item} index={index} handleClick={() => {}} />);
-    // console.log(wrapper.find("box").length);
-    expect(wrapper.find(".box")).to.have.length(1);
+    it("has .box when index not 0", () => {
+      const index = 1;
+      const wrapper = mount(<Box
+                              gridConfig={gridConfig}
+                              item={item}
+                              index={index}
+                              count={count}
+                              handleClick={() => {}} />);
+      expect(wrapper.find(".box")).to.have.length(1);
+    });
+
+    it("has .active-box when index is 0", () => {
+      const index = 0;
+      const wrapper = mount(<Box
+                              gridConfig={gridConfig}
+                              item={item}
+                              index={index}
+                              count={count}
+                              handleClick={() => {}} />);
+      expect(wrapper.find(".active-box")).to.have.length(1);
+    });
+  });
+  describe("helper functions", () => {
+    it("properly calculates what row it's in", () => {
+      expect(Box.prototype.getItemRowIndex(2, 3)).to.equal(0);
+      expect(Box.prototype.getItemRowIndex(6, 4)).to.equal(1);
+      expect(Box.prototype.getItemRowIndex(12, 2)).to.equal(6);
+    });
+
+    it("properly calculates its index in its row", () => {
+      expect(Box.prototype.getIndexInRow(2, 3)).to.equal(2);
+      expect(Box.prototype.getIndexInRow(6, 4)).to.equal(2);
+      expect(Box.prototype.getIndexInRow(12, 2)).to.equal(0);
+    });
   });
 });

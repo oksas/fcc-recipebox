@@ -1,15 +1,27 @@
 import React from "react";
-import { Motion } from "react-motion";
+import { Motion, spring } from "react-motion";
 import CSSModules from "react-css-modules";
 import styles from "./styles/test.scss";
 
 class Box extends React.Component {
+  getItemRowIndex(index, rowLen) {
+    return Math.ceil((index + 1) / rowLen) - 1;
+  }
+
+  getIndexInRow(index, rowLen) {
+    return index % rowLen;
+  }
+
   render() {
-    const index = this.props.index;
-    const style = this.props.style;
-    const item = this.props.item;
-    const count = 5;
-    const units = 4;
+    const { rowLen, width, margin, units } = this.props.gridConfig;
+    const { index, count, item } = this.props;
+    const x = (width + margin) * this.getIndexInRow(index, rowLen);
+    const y = (width + margin) * this.getItemRowIndex(index, rowLen);
+    const style = {
+      backgroundColor: item.color,
+      translateX: spring(x),
+      translateY: spring(y)
+    };
     return (
       <Motion key={item.color} style={style}>
 				{ ({translateX, translateY, backgroundColor}) =>
