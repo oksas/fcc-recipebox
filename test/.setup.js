@@ -27,6 +27,9 @@ var React = require("react");
 var chai = require("chai");
 var sinon = require("sinon");
 var enzyme = require("enzyme");
+var chaiEnzyme = require("chai-enzyme");
+
+chai.use(chaiEnzyme());
 
 global.React = React;
 global.expect = chai.expect;
