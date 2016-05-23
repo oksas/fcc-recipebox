@@ -1,7 +1,5 @@
 import React from "react";
 import { Motion, spring } from "react-motion";
-import CSSModules from "react-css-modules";
-import styles from "./styles/test.scss";
 
 class Box extends React.Component {
   getItemRowIndex(index, rowLen) {
@@ -53,4 +51,4 @@ Box.propTypes = {
   handleClick: React.PropTypes.func.isRequired
 };
 
-export default CSSModules(Box, styles);
+export default Box;

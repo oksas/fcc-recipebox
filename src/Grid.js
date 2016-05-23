@@ -1,6 +1,6 @@
 import React from "react";
 import CSSModules from "react-css-modules";
-import styles from "./styles/test.scss";
+import styles from "./styles/grid.scss";
 
 import Box from "./Box";
 
@@ -8,7 +8,7 @@ class Grid extends React.Component {
   render() {
     const count = this.props.items.length;
     return (
-			<div className="grid">
+			<div styleName="grid">
 				{
           this.props.items.map((item, index) => {
             return (

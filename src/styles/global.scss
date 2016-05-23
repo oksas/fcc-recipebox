@@ -1,0 +1,33 @@
+$rowLen: 4;
+$width: 8rem;
+$margin: 2rem;
+
+html {
+	font-family: "Raleway", sans-serif;
+}
+
+:global #app {
+	display: flex;
+	justify-content: center;
+}
+
+:global .container {
+	padding: 8rem 0;
+	width: $rowLen * ($margin + $width) - $margin;
+}
+
+:global .box {
+	box-sizing: border-box;
+	color: white;
+	cursor: pointer;
+	height: $width;
+	padding: 3rem 1.5rem;
+	position: absolute;
+	transition: border-radius 0.5s ease;
+	width: $width;
+}
+
+:global .active-box {
+	@extend .box;
+	border-radius: 50%;
+}
