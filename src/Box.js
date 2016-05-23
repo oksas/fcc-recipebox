@@ -18,7 +18,6 @@ class Box extends React.Component {
     const x = (width + margin) * this.getIndexInRow(index, rowLen);
     const y = (width + margin) * this.getItemRowIndex(index, rowLen);
     const style = {
-      backgroundColor: item.color,
       translateX: spring(x),
       translateY: spring(y)
     };

@@ -1,11 +1,17 @@
 {
   "parser": "babel-eslint",
-  "extends": "standard",
+  "extends": [
+    "standard",
+    "plugin:react/recommended"
+  ],
   "ecmaVersion": 6,
   "rules": {
       "semi": ["error", "always"],
       "space-before-function-paren": ["error", "never"],
       "quotes": ["error", "double"],
       "jsx-quotes": ["error", "prefer-double"]
-    }
+    },
+  "plugins": [
+    "react"
+  ]
 }
