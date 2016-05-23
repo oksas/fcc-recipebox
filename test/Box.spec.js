@@ -1,5 +1,6 @@
 /*eslint no-unused-vars: 0*/
 /*eslint no-undef: 0*/
+/*eslint react/react-in-jsx-scope: 0*/
 
 import Box from "../src/Box";
 import { spring } from "react-motion";

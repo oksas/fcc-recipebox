@@ -1,5 +1,4 @@
 import React from "react";
-import { Motion, spring } from "react-motion";
 import CSSModules from "react-css-modules";
 import styles from "./styles/test.scss";
 
@@ -14,6 +13,7 @@ class Grid extends React.Component {
           this.props.items.map((item, index) => {
             return (
 							<Box
+                key={item.title}
                 gridConfig={this.props.gridConfig}
                 item={item}
                 index={index}
@@ -26,5 +26,16 @@ class Grid extends React.Component {
 		);
   }
 }
+
+Grid.propTypes = {
+  gridConfig: React.PropTypes.shape({
+    rowLen: React.PropTypes.number,
+    width: React.PropTypes.number,
+    margin: React.PropTypes.number,
+    units: React.PropTypes.string
+  }).isRequired,
+  items: React.PropTypes.array.isRequired,
+  handleClick: React.PropTypes.func.isRequired
+};
 
 export default CSSModules(Grid, styles);
