@@ -11,12 +11,12 @@ class RecipeDisplay extends React.Component {
 				</div>
 				<div styleName="ingredients">
 					{this.props.item.ingredients.map(item => (
-						<p>{item}</p>
+						<p key={item}>{item}</p>
 					))}
 				</div>
 				<div styleName="instructions">
 					{this.props.item.instructions.map(item => (
-						<p>{item}</p>
+						<p key={item}>{item}</p>
 					))}
 				</div>
 			</div>

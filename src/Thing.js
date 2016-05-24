@@ -1,7 +1,7 @@
 import React from "react";
 import CSSModules from "react-css-modules";
 import styles from "./styles/test.scss";
-import {Motion, spring} from 'react-motion';
+import {Motion, spring} from "react-motion";
 
 class Thing extends React.Component {
   componentDidMount() {
