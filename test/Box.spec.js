@@ -24,6 +24,7 @@ describe("Box", () => {
                               index={index}
                               count={count}
                               handleClick={() => {}} />);
+
       expect(wrapper.find(".box")).to.have.length(1);
     });
 
@@ -36,6 +37,7 @@ describe("Box", () => {
           index={index}
           count={count}
           handleClick={() => {}} />);
+
       expect(wrapper.find(".active-box")).to.have.length(1);
     });
   });
@@ -72,6 +74,7 @@ describe("Box", () => {
           index={4}
           count={count}
           handleClick={() => {}} />);
+
       expect(wrapperA).to.have.style("transform", "translate3d(0rem, 10rem, 0)");
 
       const wrapperB = mount(
@@ -81,6 +84,7 @@ describe("Box", () => {
           index={6}
           count={count}
           handleClick={() => {}} />);
+
       expect(wrapperB).to.have.style("transform", "translate3d(20rem, 10rem, 0)");
     });
 
@@ -92,6 +96,7 @@ describe("Box", () => {
           index={0}
           count={count}
           handleClick={() => {}} />);
+
       expect(wrapperA).to.have.style("z-index", "99");
 
       const wrapperB = mount(
@@ -101,6 +106,7 @@ describe("Box", () => {
           index={4}
           count={count}
           handleClick={() => {}} />);
+
       expect(wrapperB).to.have.style("z-index", "4");
     });
   });

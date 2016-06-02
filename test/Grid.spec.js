@@ -21,6 +21,7 @@ describe("Grid", () => {
       gridConfig={gridConfig}
       items={items}
       handleClick={() => {}} />);
+
     expect(wrapper.find(".box")).to.have.length(2);
     expect(wrapper.find(".active-box")).to.have.length(1);
   });

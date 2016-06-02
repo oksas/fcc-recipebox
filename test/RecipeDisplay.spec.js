@@ -26,6 +26,7 @@ describe("RecipeDisplay", () => {
     // and instructions, but enzyme for some reason doesn't seem to like
     // when I try using ".instructions p" or ".ingredients p" selectors
     const len = item.ingredients.length + item.instructions.length;
+
     expect(wrapper.find("p")).to.have.length(len);
   });
 });

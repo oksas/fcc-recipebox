@@ -11,20 +11,31 @@ describe("RecipeEditor", () => {
     ingredients: ["salt", "pepper", "eggs"],
     instructions: ["cook", "eat", "clean"]
   };
+  const empty = () => {};
 
   it("renders ingredients and instructions separated by a newline", () => {
-    const wrapper = mount(<RecipeEditor initialItem={item} onSave={() => {}} onCancel={() => {}} />);
+    const wrapper = mount(<RecipeEditor initialItem={item} onSave={empty} onCancel={empty} />);
+
     expect(wrapper.find("[name='ingredients']").text()).to.equal("salt\npepper\neggs");
     expect(wrapper.find("[name='instructions']").text()).to.equal("cook\neat\nclean");
   });
 
+  it("passes up the current state's item on save", () => {
+    const itemSaved = spy();
+    const wrapper = shallow(<RecipeEditor initialItem={item} onSave={itemSaved} onCancel={empty} />);
+    wrapper.instance().handleSave();
+
+    expect(itemSaved.calledOnce).to.equal(true);
+    expect(itemSaved.calledWith(item)).to.equal(true);
+  });
+
   describe("onChange", () => {
-    const wrapper = mount(<RecipeEditor initialItem={item} onSave={() => {}} onCancel={() => {}} />);
+    const wrapper = shallow(<RecipeEditor initialItem={item} onSave={empty} onCancel={empty} />);
 
     it("updates the title when edited", () => {
       const event = { target: { value: "Cloud's Famous Lamb", name: "title" } };
-
       wrapper.find("[name='title']").simulate("change", event);
+
       expect(wrapper.state("item").title).to.equal(event.target.value);
     });
 
@@ -35,24 +46,18 @@ describe("RecipeEditor", () => {
       const event = { target: { value: "spice\nice\nrice", name: "ingredients" } };
       const expected = ["spice", "ice", "rice"];
 
-      // This seems smelly
-      // But .to.equal does not seem to do any deep array comparison
       wrapper.find("[name='ingredients']").simulate("change", event);
       const ingredients = wrapper.state("item").ingredients;
-      expect(ingredients[0]).to.equal(expected[0]);
-      expect(ingredients[1]).to.equal(expected[1]);
-      expect(ingredients[2]).to.equal(expected[2]);
+      expect(ingredients).to.eql(expected);
     });
 
     it("updates the instructions when edited", () => {
       const event = { target: { value: "eat\npray\nlove", name: "instructions" } };
       const expected = ["eat", "pray", "love"];
-
       wrapper.find("[name='instructions']").simulate("change", event);
       const instructions = wrapper.state("item").instructions;
-      expect(instructions[0]).to.equal(expected[0]);
-      expect(instructions[1]).to.equal(expected[1]);
-      expect(instructions[2]).to.equal(expected[2]);
+
+      expect(instructions).to.eql(expected);
     });
   });
 });
