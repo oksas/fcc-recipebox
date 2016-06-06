@@ -28,7 +28,7 @@ class Box extends React.Component {
 						style={{
               backgroundColor: item.color,
               zIndex: index === 0 ? 99 : count - index,
-              transform: `translate3d(${translateX}${units}, ${translateY}${units}, 0)`,
+              transform: `translate3d(${translateX}${units}, ${translateY}${units}, 0)`
 					}}>
 						{item.title}
 					</div>
@@ -41,8 +41,8 @@ class Box extends React.Component {
 Box.propTypes = {
   gridConfig: React.PropTypes.shape({
     rowLen: React.PropTypes.number,
-    width: React.PropTypes.number,
     margin: React.PropTypes.number,
+    width: React.PropTypes.number,
     units: React.PropTypes.string
   }).isRequired,
   item: React.PropTypes.object.isRequired,

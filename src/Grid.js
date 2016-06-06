@@ -18,7 +18,7 @@ class Grid extends React.Component {
                 item={item}
                 index={index}
                 count={count}
-                handleClick={() => {}} />
+                handleClick={this.props.handleClick.bind(null, index)} />
 						);
           })
 				}
@@ -30,8 +30,8 @@ class Grid extends React.Component {
 Grid.propTypes = {
   gridConfig: React.PropTypes.shape({
     rowLen: React.PropTypes.number,
-    width: React.PropTypes.number,
     margin: React.PropTypes.number,
+    width: React.PropTypes.number,
     units: React.PropTypes.string
   }).isRequired,
   items: React.PropTypes.array.isRequired,
