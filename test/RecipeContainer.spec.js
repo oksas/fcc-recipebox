@@ -51,20 +51,15 @@ describe("RecipeContainer", () => {
       expect(RecipeContainer.prototype.getBoxWidthPercentage(3, 4)).to.equal(28);
     });
 
-    // Add check that the grid config is properly added to state
-
     it("generates proper gridConfig based on window screen size", () => {
-      global.window.screen.width = 360;
-      const expected1 = { rowLen: 2, margin: 10, width: 40, units: "%" };
-      expect(wrapper.instance().getGridConfig()).to.eql(expected1);
+      const expected1 = { rowLen: 2, margin: 36, width: 144, units: "px" };
+      expect(wrapper.instance().getGridConfig(360)).to.eql(expected1);
 
-      global.window.screen.width = 768;
-      const expected2 = { rowLen: 3, margin: 10, width: 20, units: "%" };
-      expect(wrapper.instance().getGridConfig()).to.eql(expected2);
+      const expected2 = { rowLen: 3, margin: 64, width: 128, units: "px" };
+      expect(wrapper.instance().getGridConfig(640)).to.eql(expected2);
 
-      global.window.screen.width = 1024;
-      const expected3 = { rowLen: 4, margin: 5, width: 17.5, units: "%" };
-      expect(wrapper.instance().getGridConfig()).to.eql(expected3);
+      const expected3 = { rowLen: 4, margin: 60, width: 210, units: "px" };
+      expect(wrapper.instance().getGridConfig(1200)).to.eql(expected3);
     });
   });
 });

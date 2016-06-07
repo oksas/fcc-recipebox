@@ -30,9 +30,9 @@ class Box extends React.Component {
               zIndex: index === 0 ? 99 : count - index,
               transform: `translate3d(${translateX}${units}, ${translateY}${units}, 0)`,
               width: `${width}${units}`,
-              height: `${width}${units}`,
-          }}>
-						{item.title[0]}
+              height: `${width}${units}`
+            }}>
+						{""}
 					</div>
 				}
 			</Motion>

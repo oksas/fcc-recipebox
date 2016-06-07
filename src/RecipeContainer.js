@@ -37,32 +37,38 @@ class RecipeContainer extends React.Component {
     return newArr;
   }
 
-  getBoxWidthPercentage(rowLen, margin) {
-    return (100 - (2 * rowLen - 2) * margin) / rowLen;
+  getBoxWidthPercentage(rowLen, marginPercent) {
+    return (100 - (2 * rowLen - 2) * marginPercent) / rowLen;
   }
 
-  getGridConfig() {
-    let width = window.screen.width;
-    let rowLen;
-    let margin;
+  percentToPixels(percentage, total) {
+    return (percentage / 100) * total;
+  }
 
-    if (width < 480) {
+  // Turn this into a pure function!
+  getGridConfig(gridWidth) {
+    let rowLen;
+    let marginPercent;
+
+    if (gridWidth < 480) {
       rowLen = 2;
-      margin = 10;
-    } else if (width < 800) {
+      marginPercent = 10;
+    } else if (gridWidth < 800) {
       rowLen = 3;
-      margin = 10;
+      marginPercent = 10;
     } else {
       rowLen = 4;
-      margin = 5;
+      marginPercent = 5;
     }
 
-    console.log(`recipeBoxWidth is ${this.recipeBox}`);
+    const marginPixels = this.percentToPixels(marginPercent, gridWidth);
+    const widthPercent = this.getBoxWidthPercentage(rowLen, marginPercent);
+    const widthPixels = this.percentToPixels(widthPercent, gridWidth);
 
     const config = {
       rowLen,
-      margin: (margin / 100) * this.recipeBox.clientWidth,
-      width: (this.getBoxWidthPercentage(rowLen, margin) / 100) * this.recipeBox.clientWidth,
+      margin: marginPixels,
+      width: widthPixels,
       units: "px"
     };
 
@@ -71,7 +77,7 @@ class RecipeContainer extends React.Component {
 
   onMount() {
     this.setState({
-      gridConfig: this.getGridConfig()
+      gridConfig: this.getGridConfig(this.recipeBox.clientWidth)
     });
   }
 
