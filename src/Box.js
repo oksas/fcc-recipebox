@@ -24,13 +24,15 @@ class Box extends React.Component {
 				{ ({translateX, translateY, backgroundColor}) =>
 					<div
 						onClick={this.props.handleClick.bind(null, index)}
-						className={index === 0 ? "active-box" : "box"}
-						style={{
+            className={index === 0 ? "active-box" : "box"}
+            style={{
               backgroundColor: item.color,
               zIndex: index === 0 ? 99 : count - index,
-              transform: `translate3d(${translateX}${units}, ${translateY}${units}, 0)`
-					}}>
-						{item.title}
+              transform: `translate3d(${translateX}${units}, ${translateY}${units}, 0)`,
+              width: `${width}${units}`,
+              height: `${width}${units}`,
+          }}>
+						{item.title[0]}
 					</div>
 				}
 			</Motion>

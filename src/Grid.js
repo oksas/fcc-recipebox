@@ -8,7 +8,7 @@ class Grid extends React.Component {
   render() {
     const count = this.props.items.length;
     return (
-			<div styleName="grid">
+			<div styleName="grid" style={{height: this.height}} >
 				{
           this.props.items.map((item, index) => {
             return (

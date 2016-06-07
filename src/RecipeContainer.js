@@ -10,22 +10,19 @@ import Grid from "./Grid";
 class RecipeContainer extends React.Component {
   constructor() {
     super();
-    const batman = {
-      color: "blue",
-      title: "Batman's Famous Chicken",
-      ingredients: ["salt", "chile", "paprika"],
-      instructions: ["bake", "shake", "consume"]
-    };
-    const batman2 = {
-      color: "blue",
-      title: "Batman's Sloppy Chicken",
-      ingredients: ["salt", "chile", "paprika"],
-      instructions: ["bake", "shake", "consume"]
-    };
+    let items = [];
+    for (var i = 0; i < 8; i++) {
+      items.push({
+        color: "blue",
+        title: `Recipe ${i}`,
+        ingredients: ["salt", "chile", "paprika"],
+        instructions: ["bake", "shake", "consume"]
+      });
+    }
 
     this.state = {
       editing: false,
-      items: localStorage._oksas_recipes || [batman, batman2]
+      items: localStorage._oksas_recipes || items
     };
     this.moveToFront = this.moveToFront.bind(this);
     this.getGridConfig = this.getGridConfig.bind(this);
@@ -60,11 +57,13 @@ class RecipeContainer extends React.Component {
       margin = 5;
     }
 
+    console.log(`recipeBoxWidth is ${this.recipeBox}`);
+
     const config = {
       rowLen,
-      margin,
-      width: this.getBoxWidthPercentage(rowLen, margin),
-      units: "%"
+      margin: (margin / 100) * this.recipeBox.clientWidth,
+      width: (this.getBoxWidthPercentage(rowLen, margin) / 100) * this.recipeBox.clientWidth,
+      units: "px"
     };
 
     return config;
@@ -88,8 +87,7 @@ class RecipeContainer extends React.Component {
 
   render() {
     return (
-			<div>
-        <span>Sup</span>
+			<div styleName="container" ref={ref => this.recipeBox = ref}>
 				<RecipeTop
           item={this.state.items[0]}
           editing={this.state.editing}
@@ -97,11 +95,15 @@ class RecipeContainer extends React.Component {
           handleCancel={() => {}}
           switchModes={() => {}}
         />
-        <Grid
-          gridConfig={{ rowLen: 2, margin: 10, width: 40, units: "%" }}
-          handleClick={this.handleClick}
-          items={this.state.items}
-        />
+        {
+          this.state.gridConfig
+          ? <Grid
+            gridConfig={this.state.gridConfig}
+            handleClick={this.handleClick}
+            items={this.state.items}
+          />
+          : null
+        }
 			</div>
 		);
   }
