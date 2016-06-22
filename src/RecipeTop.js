@@ -8,7 +8,7 @@ import RecipeEditor from "./RecipeEditor";
 class RecipeTop extends React.Component {
   render() {
     return (
-			<div>
+			<div styleName="top">
 				<button onClick={this.props.switchModes}>change</button>
 				{this.props.editing
           ?	<div>

@@ -35,11 +35,24 @@ describe("RecipeContainer", () => {
     expect(RecipeContainer.prototype.moveToFront(initial, 1)).to.eql(expected3);
   });
 
-  it("renders a grid and a recipe top", () => {
+  it("renders a recipe top", () => {
+    // Ideally this test would also check for a <Grid> but that requires the component to call onMount(), which it doesn't seem to do when shallow rendered (makes sense), so the conditionally there <Grid> is not yet there; maybe try a separate mounted wrapper for this
     expect(wrapper.containsAllMatchingElements([
-      <Grid />,
       <RecipeTop />
     ])).to.equal(true);
+  });
+
+  it("properly handles a new item being saved as items[0]", () => {
+    const newItem = {
+      color: "green",
+      title: "Chicken Fun Time",
+      ingredients: ["salt", "chicken", "paprika"],
+      instructions: ["bake", "stir", "consume"]
+    };
+
+    wrapper.instance().handleSave(newItem);
+
+    expect(wrapper.state().items[0]).to.eql(newItem);
   });
 
   // Add some tests to check that state is properly updated with handleClick

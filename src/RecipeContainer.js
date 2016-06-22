@@ -28,6 +28,9 @@ class RecipeContainer extends React.Component {
     this.getGridConfig = this.getGridConfig.bind(this);
     this.onMount = this.onMount.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleSave = this.handleSave.bind(this);
+    this.handleSwitch = this.handleSwitch.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   moveToFront(oldArr, index) {
@@ -87,7 +90,27 @@ class RecipeContainer extends React.Component {
 
   handleClick(index) {
     this.setState({
+      editing: false,
       items: this.moveToFront(this.state.items, index)
+    });
+  }
+
+  handleSave(item) {
+    this.setState({
+      editing: false,
+      items: [].concat(item, this.state.items.slice(1))
+    });
+  }
+
+  handleSwitch() {
+    this.setState({
+      editing: !this.state.editing
+    });
+  }
+
+  handleCancel() {
+    this.setState({
+      editing: false
     });
   }
 
@@ -97,9 +120,9 @@ class RecipeContainer extends React.Component {
 				<RecipeTop
           item={this.state.items[0]}
           editing={this.state.editing}
-          handleSave={() => {}}
-          handleCancel={() => {}}
-          switchModes={() => {}}
+          handleSave={this.handleSave}
+          handleCancel={this.handleCancel}
+          switchModes={this.handleSwitch}
         />
         {
           this.state.gridConfig

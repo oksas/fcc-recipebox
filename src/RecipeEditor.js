@@ -46,6 +46,12 @@ class RecipeEditor extends React.Component {
 						onChange={this.handleChange}
 						value={this.state.item.title} />
 				</div>
+        <div className="title">
+					<input
+						name="color"
+						onChange={this.handleChange}
+						value={this.state.item.color} />
+				</div>
 				<div className="ingredients">
 					<textarea
 						name="ingredients"
