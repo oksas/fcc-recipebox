@@ -1,4 +1,5 @@
+@import "mixins.scss";
+
 .top {
-  // min-width: 20rem;
-  text-align: left;
+  margin-bottom: $minor_spacing;
 }

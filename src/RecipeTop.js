@@ -9,15 +9,14 @@ class RecipeTop extends React.Component {
   render() {
     return (
 			<div styleName="top">
-				<button onClick={this.props.switchModes}>change</button>
 				{this.props.editing
           ?	<div>
-					<RecipeDisplay item={this.props.item} />
+					<RecipeDisplay item={this.props.item} switchModes={this.props.switchModes} />
 					<RecipeEditor initialItem={this.props.item}
 							onSave={this.props.handleSave}
 							onCancel={this.props.handleCancel} />
 					</div>
-					: <RecipeDisplay item={this.props.item} />
+					: <RecipeDisplay item={this.props.item} switchModes={this.props.switchModes} />
 				}
 			</div>
 		);

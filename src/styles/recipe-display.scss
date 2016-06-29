@@ -6,13 +6,21 @@
 }
 
 .title-wrap {
-	border-bottom: $thin_border;
 	margin-bottom: $major_spacing;
+	position: relative;
 }
 
 .title:first-child:first-letter {
 	float: left;
 	font-size: 8rem;
+	margin-right: 0.5rem;
+}
+
+.edit {
+	background: none;
+	border: $thin_border;
+	position: absolute;
+	top: 0; right: 0;
 }
 
 .ingredients,

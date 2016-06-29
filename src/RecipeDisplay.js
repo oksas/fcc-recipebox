@@ -8,6 +8,7 @@ class RecipeDisplay extends React.Component {
 			<div styleName="display">
 				<div styleName="title-wrap">
 					<h1 styleName="title">{this.props.item.title}</h1>
+          <button styleName="edit" onClick={this.props.switchModes}>change</button>
 				</div>
 				<div styleName="ingredients">
           <h2 styleName="sub-header">Ingredients</h2>
@@ -32,7 +33,8 @@ RecipeDisplay.propTypes = {
     title: React.PropTypes.string,
     ingredients: React.PropTypes.array,
     instructions: React.PropTypes.array
-  }).isRequired
+  }).isRequired,
+  switchModes: React.PropTypes.func.isRequired
 };
 
 export default CSSModules(RecipeDisplay, styles);
