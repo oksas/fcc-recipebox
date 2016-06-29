@@ -6,15 +6,17 @@ class RecipeDisplay extends React.Component {
   render() {
     return (
 			<div styleName="display">
-				<div styleName="title">
-					<h1>{this.props.item.title}</h1>
+				<div styleName="title-wrap">
+					<h1 styleName="title">{this.props.item.title}</h1>
 				</div>
 				<div styleName="ingredients">
+          <h2 styleName="sub-header">Ingredients</h2>
 					{this.props.item.ingredients.map(item => (
 						<p key={item}>{item}</p>
 					))}
 				</div>
 				<div styleName="instructions">
+          <h2 styleName="sub-header">Instructions</h2>
 					{this.props.item.instructions.map(item => (
 						<p key={item}>{item}</p>
 					))}

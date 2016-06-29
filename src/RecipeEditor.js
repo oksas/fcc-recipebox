@@ -39,34 +39,36 @@ class RecipeEditor extends React.Component {
 
   render() {
     return (
-			<div className="editor">
-				<div className="title">
-					<input
-						name="title"
-						onChange={this.handleChange}
-						value={this.state.item.title} />
-				</div>
-        <div className="title">
-					<input
-						name="color"
-						onChange={this.handleChange}
-						value={this.state.item.color} />
-				</div>
-				<div className="ingredients">
-					<textarea
-						name="ingredients"
-						onChange={this.handleChange}
-						value={this.state.item.ingredients.join("\n")} />
-				</div>
-				<div className="instructions">
-					<textarea
-						name="instructions"
-						onChange={this.handleChange}
-						value={this.state.item.instructions.join("\n")} />
-				</div>
-				<button onClick={this.handleSave}>save</button>
-				<button onClick={this.handleCancel}>cancel</button>
-			</div>
+      <div styleName="wrapper">
+        <div styleName="editor">
+          <div styleName="title">
+            <input
+              name="title"
+              onChange={this.handleChange}
+              value={this.state.item.title} />
+          </div>
+          <div styleName="title">
+            <input
+              name="color"
+              onChange={this.handleChange}
+              value={this.state.item.color} />
+          </div>
+          <div styleName="ingredients">
+            <textarea
+              name="ingredients"
+              onChange={this.handleChange}
+              value={this.state.item.ingredients.join("\n")} />
+          </div>
+          <div styleName="instructions">
+            <textarea
+              name="instructions"
+              onChange={this.handleChange}
+              value={this.state.item.instructions.join("\n")} />
+          </div>
+          <button onClick={this.handleSave}>save</button>
+          <button onClick={this.handleCancel}>cancel</button>
+        </div>
+      </div>
 		);
   }
 }

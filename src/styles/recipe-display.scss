@@ -1,16 +1,41 @@
+@import "mixins.scss";
+
 .display {
 	padding-bottom: 2rem;
 	width: 100%;
 }
 
-.title {
-	color: black;
+.title-wrap {
+	border-bottom: $thin_border;
+	margin-bottom: $major_spacing;
+}
+
+.title:first-child:first-letter {
+	float: left;
+	font-size: 8rem;
+}
+
+.ingredients,
+.instructions {
+	border-top: $thin_border;
+	display: inline-block;
+	vertical-align: top;
 }
 
 .ingredients {
-	color: black;
+	margin-right: $minor_spacing;
+	text-align: left;
+	width: 30%;
 }
 
 .instructions {
-	color: black;
+	text-align: left;
+	width: 65%;
+}
+
+.sub-header {
+	font-size: 1rem;
+	font-weight: 500;
+	margin: $minor_spacing / 2 0;
+	text-transform: uppercase;
 }
