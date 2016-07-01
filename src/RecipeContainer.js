@@ -13,7 +13,7 @@ class RecipeContainer extends React.Component {
     let items = [];
     for (var i = 0; i < 8; i++) {
       items.push({
-        color: "blue",
+        color: "#004751",
         title: `Recipe ${i}`,
         ingredients: ["salt", "chile", "paprika"],
         instructions: ["bake", "shake", "consume"]

@@ -32,7 +32,7 @@ class Box extends React.Component {
               width: `${width}${units}`,
               height: `${width}${units}`
             }}>
-						{""}
+						<span className="box-label">{this.props.item.title[0]}</span>
 					</div>
 				}
 			</Motion>

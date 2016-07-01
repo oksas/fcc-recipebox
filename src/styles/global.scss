@@ -24,14 +24,17 @@ h1, h2, h3, h4, h5, h6 {
 	box-sizing: border-box;
 	color: white;
 	cursor: pointer;
-	display: inline-block;
-	// font-size: 3rem;
-	// padding: 3rem 1.5rem;
 	position: absolute;
-	transition: border-radius 0.5s ease;
+	text-align: center;
+}
+
+:global .box-label {
+	font-family: "Yrsa", serif;
+	font-size: 10em;
+	font-weight: 300;
+	line-height: 0.9;
 }
 
 :global .active-box {
 	@extend .box;
-	border-radius: 50%;
 }
