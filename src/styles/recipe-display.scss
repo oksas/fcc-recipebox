@@ -29,20 +29,21 @@
 
 .ingredients,
 .instructions {
+	box-sizing: border-box;
 	border-top: $thin_border;
 	display: inline-block;
+	margin-bottom: $minor_spacing;
+	text-align: left;
 	vertical-align: top;
+	width: 100%;
 }
 
 .ingredients {
-	margin-right: $minor_spacing;
-	text-align: left;
-	width: 30%;
+
 }
 
 .instructions {
-	text-align: left;
-	width: 65%;
+
 }
 
 .sub-header {

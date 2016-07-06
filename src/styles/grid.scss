@@ -1,9 +1,9 @@
 @import "mixins.scss";
 
 .grid {
-	display: inline-block;
+	// Praise the flexbox gods
+	flex: 0 0 $box_size;
+	min-height: $box-size;
 	position: relative;
 	vertical-align: top;
-	width: $box_size;
-	margin-right: $minor_spacing;
 }

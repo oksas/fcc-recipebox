@@ -1,8 +1,6 @@
 @import "mixins.scss";
 
 .top {
-  display: inline-block;
-  margin-bottom: $minor_spacing;
-  width: 40rem;
-  vertical-align: top;
+  flex-grow: 1;
+  margin: 0 0 $minor_spacing $minor_spacing;
 }

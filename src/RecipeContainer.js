@@ -23,10 +23,11 @@ class RecipeContainer extends React.Component {
     this.state = {
       editing: false,
       items: localStorage._oksas_recipes || items,
+      // from the scss, pull in the width, and the units
       gridConfig: {
-        margin: 12,
-        width: 40,
-        units: "px"
+        margin: 0.75,
+        width: 2.5,
+        units: "rem"
       }
     };
     this.moveToFront = this.moveToFront.bind(this);

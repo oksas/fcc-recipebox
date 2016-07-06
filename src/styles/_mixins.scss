@@ -1,9 +1,17 @@
 $text_primary: #212121;
 $text_secondary: #999999;
 
-$box_size: 40px;
+$box_size: 2.5rem;
+$container_size: 50rem;
+
+:export {
+  boxSize: 2.5;
+  boxUnits: "rem";
+}
 
 $thin_border: 1px solid $text_secondary;
 
 $minor_spacing: 2rem;
 $major_spacing: 6rem;
+
+$breakpoint_medium: 40rem;

@@ -7,8 +7,11 @@ import Box from "./Box";
 class Grid extends React.Component {
   render() {
     const count = this.props.items.length;
+    const { margin, width, units } = this.props.gridConfig;
+    const height = `${(margin + width) * count}${units}`;
+
     return (
-			<div styleName="grid" style={{height: this.height}} >
+			<div styleName="grid" style={{height}} >
 				{
           this.props.items.map((item, index) => {
             return (
