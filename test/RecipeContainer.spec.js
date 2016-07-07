@@ -16,13 +16,47 @@ for (var i = 0; i < 8; i++) {
     instructions: ["bake", "shake", "consume"]
   });
 }
-global.localStorage = { _oksas_recipes: items };
 
 describe("RecipeContainer", () => {
   const wrapper = shallow(<RecipeContainer />);
 
-  it("pulls initial data from localStorage", () => {
-    expect(wrapper.state().items).to.equal(localStorage._oksas_recipes);
+  describe("Data saving and loading", () => {
+    it("pulls initial data from localStorage if none exists", () => {
+      // init the appropriate teardown here?
+      // expect(wrapper.state().items).to.equal(localStorage._oksas_recipes);
+    });
+
+    it("properly saves updated recipes to state and storage", () => {
+      const newItem = {
+        color: "green",
+        title: "Chicken Fun Time",
+        ingredients: ["salt", "chicken", "paprika"],
+        instructions: ["bake", "stir", "consume"]
+      };
+
+      wrapper.instance().handleSave(newItem);
+
+      let expectedStateItem = wrapper.state().items[0];
+      let expectedStorageItem = JSON.parse(localStorage.getItem("_oksas_recipes"))[0];
+
+      expect(expectedStateItem).to.eql(newItem);
+      expect(expectedStorageItem).to.eql(newItem);
+    });
+
+    it("properly adds new recipes to state and storage", () => {
+      // run the add item function
+      // is it at index 0?
+      // is it part of the state?
+      // is it part of storage?
+
+    });
+
+    it("properly removes new recipes from state and storage", () => {
+      // run the remove item function
+      // is the item at index 0 now not the deleted item?
+      // ^ in state?
+      // ^ in storage?
+    });
   });
 
   it("can change an array in an immutable way", () => {
@@ -35,44 +69,12 @@ describe("RecipeContainer", () => {
     expect(RecipeContainer.prototype.moveToFront(initial, 1)).to.eql(expected3);
   });
 
-  it("renders a recipe top", () => {
-    // Ideally this test would also check for a <Grid> but that requires the component to call onMount(), which it doesn't seem to do when shallow rendered (makes sense), so the conditionally there <Grid> is not yet there; maybe try a separate mounted wrapper for this
+  it("renders a grid and recipe top", () => {
     expect(wrapper.containsAllMatchingElements([
+      <Grid />,
       <RecipeTop />
     ])).to.equal(true);
   });
 
-  it("properly handles a new item being saved as items[0]", () => {
-    const newItem = {
-      color: "green",
-      title: "Chicken Fun Time",
-      ingredients: ["salt", "chicken", "paprika"],
-      instructions: ["bake", "stir", "consume"]
-    };
-
-    wrapper.instance().handleSave(newItem);
-
-    expect(wrapper.state().items[0]).to.eql(newItem);
-  });
-
   // Add some tests to check that state is properly updated with handleClick
-
-  describe("gridConfig", () => {
-    it("calculates proper <Box> width percentages", () => {
-      expect(RecipeContainer.prototype.getBoxWidthPercentage(4, 5)).to.equal(17.5);
-      expect(RecipeContainer.prototype.getBoxWidthPercentage(2, 10)).to.equal(40);
-      expect(RecipeContainer.prototype.getBoxWidthPercentage(3, 4)).to.equal(28);
-    });
-
-    it("generates proper gridConfig based on window screen size", () => {
-      const expected1 = { rowLen: 2, margin: 36, width: 144, units: "px" };
-      expect(wrapper.instance().getGridConfig(360)).to.eql(expected1);
-
-      const expected2 = { rowLen: 3, margin: 64, width: 128, units: "px" };
-      expect(wrapper.instance().getGridConfig(640)).to.eql(expected2);
-
-      const expected3 = { rowLen: 4, margin: 60, width: 210, units: "px" };
-      expect(wrapper.instance().getGridConfig(1200)).to.eql(expected3);
-    });
-  });
 });

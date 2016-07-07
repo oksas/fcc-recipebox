@@ -8,7 +8,7 @@
     "git": "git commit -m",
     "postgit": "git push",
     "test": "mocha test/.setup.js test/*.spec.js",
-    "test:watch": "mocha test/.setup.js test/*.spec.js --watch --reporter spec --harmony-proxies",
+    "test:watch": "mocha test/.setup.js test/*.spec.js --watch --reporter spec --harmony-proxies -r mock-local-storage",
     "dev": "node server"
   },
   "repository": {

@@ -37,7 +37,12 @@ Box.propTypes = {
     width: React.PropTypes.number,
     units: React.PropTypes.string
   }).isRequired,
-  item: React.PropTypes.object.isRequired,
+  item: React.PropTypes.shape({
+    color: React.PropTypes.string,
+    title: React.PropTypes.string,
+    ingredients: React.PropTypes.array,
+    instructions: React.PropTypes.array
+  }).isRequired,
   index: React.PropTypes.number.isRequired,
   count: React.PropTypes.number.isRequired,
   handleClick: React.PropTypes.func.isRequired

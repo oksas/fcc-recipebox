@@ -1,5 +1,5 @@
 require("babel-register")();
-require("mock-local-storage")();
+
 
 var mockCssModules = require("mock-css-modules");
 mockCssModules.register(["sass", ".scss"]);
@@ -31,6 +31,7 @@ var enzyme = require("enzyme");
 var chaiEnzyme = require("chai-enzyme");
 
 chai.use(chaiEnzyme());
+
 
 global.React = React;
 global.expect = chai.expect;

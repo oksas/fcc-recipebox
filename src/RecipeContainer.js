@@ -15,7 +15,6 @@ class RecipeContainer extends React.Component {
     let items;
 
     if (localStorage.getItem("_oksas_recipes")) {
-      console.log("found locally stored items, supposedly");
       items = JSON.parse(localStorage.getItem("_oksas_recipes"));
     } else {
       items = this.generateInitialData();
@@ -57,7 +56,6 @@ class RecipeContainer extends React.Component {
   }
 
   saveLocalRecipes(items) {
-    console.log("Saving local recipes...");
     // What does the below line return? Can use its return value to handle errors?
     localStorage.setItem("_oksas_recipes", JSON.stringify(items));
   }
