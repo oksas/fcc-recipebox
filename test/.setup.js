@@ -1,4 +1,5 @@
 require("babel-register")();
+require("mock-local-storage")();
 
 var mockCssModules = require("mock-css-modules");
 mockCssModules.register(["sass", ".scss"]);

@@ -2,6 +2,7 @@
 A box, containing recipes.
 
 ## TODO
+* Add an 'add recipe' and 'delete recipe' button heeeeh
 * Add a padding-right to the title so it never overlaps with the edit button
 * Make proptypes static on classes
 * Adjust styles for width for entire container to ensure proper rendering of the grid etc. (make sure the grid fills the full width or vice-versa)

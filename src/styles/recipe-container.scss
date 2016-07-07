@@ -5,7 +5,7 @@
   flex-flow: row nowrap;
   padding: $minor_spacing;
   width: 100%;
-  @media (min-width: $container_size) {
+  @media (min-width: $breakpoint_large) {
     width: $container_size;
   }
 }

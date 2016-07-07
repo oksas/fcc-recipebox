@@ -27,6 +27,8 @@
 	top: 0; right: 0;
 }
 
+$ingredients_width: 30%;
+
 .ingredients,
 .instructions {
 	box-sizing: border-box;
@@ -39,11 +41,16 @@
 }
 
 .ingredients {
-
+	@media (min-width: $breakpoint_medium) {
+		margin-right: $minor_spacing;
+		width: $ingredients_width;
+	}
 }
 
 .instructions {
-
+	@media (min-width: $breakpoint_medium) {
+		width: calc(100% - #{$ingredients_width} - #{$minor_spacing});
+	}
 }
 
 .sub-header {
