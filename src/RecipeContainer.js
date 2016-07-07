@@ -35,10 +35,20 @@ class RecipeContainer extends React.Component {
     this.handleSave = this.handleSave.bind(this);
     this.handleSwitch = this.handleSwitch.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.saveLocalRecipes = this.saveLocalRecipes.bind(this);
     this.generateInitialData = this.generateInitialData.bind(this);
 
     this.saveLocalRecipes(this.state.items);
+  }
+
+  handleAdd() {
+
+  }
+
+  handleDelete() {
+
   }
 
   generateInitialData() {

@@ -27,20 +27,24 @@ describe("RecipeContainer", () => {
     });
 
     it("properly saves updated recipes to state and storage", () => {
-      const newItem = {
+      const updatedItem = {
         color: "green",
         title: "Chicken Fun Time",
         ingredients: ["salt", "chicken", "paprika"],
         instructions: ["bake", "stir", "consume"]
       };
+      const initialLength = wrapper.state().items.length;
 
-      wrapper.instance().handleSave(newItem);
+      wrapper.instance().handleSave(updatedItem);
 
-      let expectedStateItem = wrapper.state().items[0];
-      let expectedStorageItem = JSON.parse(localStorage.getItem("_oksas_recipes"))[0];
+      let expectedStateItems = wrapper.state().items;
+      let expectedStorageItems = JSON.parse(localStorage.getItem("_oksas_recipes"));
 
-      expect(expectedStateItem).to.eql(newItem);
-      expect(expectedStorageItem).to.eql(newItem);
+      expect(expectedStateItems[0]).to.eql(updatedItem);
+      expect(expectedStateItems.length).to.equal(initialLength);
+
+      expect(expectedStorageItems[0]).to.eql(updatedItem);
+      expect(expectedStorageItems.length).to.equal(initialLength);
     });
 
     it("properly adds new recipes to state and storage", () => {
@@ -49,6 +53,19 @@ describe("RecipeContainer", () => {
       // is it part of the state?
       // is it part of storage?
 
+      const newItem = {};
+      const initialLength = wrapper.state().items.length;
+
+      wrapper.instance().handleAdd(newItem);
+
+      let expectedStateItems = wrapper.state().items;
+      let expectedStorageItems = JSON.parse(localStorage.getItem("_oksas_recipes"));
+
+      expect(expectedStateItems[0]).to.eql(newItem);
+      expect(expectedStateItems.length).to.equal(initialLength + 1);
+
+      expect(expectedStorageItems[0]).to.eql(newItem);
+      expect(expectedStorageItems.length).to.equal(initialLength + 1);
     });
 
     it("properly removes new recipes from state and storage", () => {
@@ -56,6 +73,20 @@ describe("RecipeContainer", () => {
       // is the item at index 0 now not the deleted item?
       // ^ in state?
       // ^ in storage?
+
+      const itemToDelete = Object.assign({}, wrapper.state().items[0]);
+      const initialLength = wrapper.state().items.length;
+
+      wrapper.instance().handleDelete();
+
+      let expectedStateItems = wrapper.state().items;
+      let expectedStorageItems = JSON.parse(localStorage.getItem("_oksas_recipes"));
+
+      expect(expectedStateItems[0]).to.not.eql(itemToDelete);
+      expect(expectedStateItems.length).to.equal(initialLength - 1);
+
+      expect(expectedStorageItems[0]).to.not.eql(itemToDelete);
+      expect(expectedStorageItems.length).to.equal(initialLength - 1);
     });
   });
 
