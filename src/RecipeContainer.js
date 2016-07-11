@@ -44,11 +44,25 @@ class RecipeContainer extends React.Component {
   }
 
   handleAdd() {
-
+    let sampleItem = {
+      color: "black",
+      title: "Rad New Recipe",
+      ingredients: "1 cup love",
+      instructions: "Spread the love."
+    };
+    let newItems = [].concat(sampleItem, this.state.items);
+    this.setState({
+      items: newItems
+    });
+    this.saveLocalRecipes(newItems);
   }
 
   handleDelete() {
-
+    let newItems = [].concat(this.state.items.slice(1));
+    this.setState({
+      items: newItems
+    });
+    this.saveLocalRecipes(newItems);
   }
 
   generateInitialData() {

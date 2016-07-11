@@ -21,9 +21,13 @@ describe("RecipeContainer", () => {
   const wrapper = shallow(<RecipeContainer />);
 
   describe("Data saving and loading", () => {
-    it("pulls initial data from localStorage if none exists", () => {
+    it("pulls initial data from localStorage if it exists", () => {
       // init the appropriate teardown here?
       // expect(wrapper.state().items).to.equal(localStorage._oksas_recipes);
+    });
+
+    it("creates sample data if none exist in localStorage", () => {
+      // check to see that items has a length <= 1 and item 0 has the appropriate fields
     });
 
     it("properly saves updated recipes to state and storage", () => {
@@ -48,32 +52,19 @@ describe("RecipeContainer", () => {
     });
 
     it("properly adds new recipes to state and storage", () => {
-      // run the add item function
-      // is it at index 0?
-      // is it part of the state?
-      // is it part of storage?
-
-      const newItem = {};
       const initialLength = wrapper.state().items.length;
 
-      wrapper.instance().handleAdd(newItem);
+      wrapper.instance().handleAdd();
 
       let expectedStateItems = wrapper.state().items;
       let expectedStorageItems = JSON.parse(localStorage.getItem("_oksas_recipes"));
 
-      expect(expectedStateItems[0]).to.eql(newItem);
       expect(expectedStateItems.length).to.equal(initialLength + 1);
 
-      expect(expectedStorageItems[0]).to.eql(newItem);
       expect(expectedStorageItems.length).to.equal(initialLength + 1);
     });
 
     it("properly removes new recipes from state and storage", () => {
-      // run the remove item function
-      // is the item at index 0 now not the deleted item?
-      // ^ in state?
-      // ^ in storage?
-
       const itemToDelete = Object.assign({}, wrapper.state().items[0]);
       const initialLength = wrapper.state().items.length;
 
