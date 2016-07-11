@@ -75,6 +75,7 @@ class RecipeEditor extends React.Component {
 
 RecipeEditor.propTypes = {
   initialItem: React.PropTypes.shape({
+    id: React.PropTypes.number,
     color: React.PropTypes.string,
     title: React.PropTypes.string,
     ingredients: React.PropTypes.array,

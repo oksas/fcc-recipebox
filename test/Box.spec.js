@@ -6,8 +6,15 @@ import Box from "../src/Box";
 import { spring } from "react-motion";
 
 describe("Box", () => {
+  const item = {
+    id: 22,
+    color: "red",
+    title: "rofl",
+    ingredients: ["sup"],
+    instructions: ["sup"]
+  };
+
   describe("classes", () => {
-    const item = { color: "red", title: "rofl" };
     const count = 8;
     const gridConfig = {
       margin: 1,
@@ -42,7 +49,6 @@ describe("Box", () => {
   });
 
   describe("styles", () => {
-    const item = { color: "red", title: "rofl" };
     const count = 8;
     const gridConfig = {
       width: 8,

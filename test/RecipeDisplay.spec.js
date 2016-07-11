@@ -7,6 +7,7 @@ import RecipeDisplay from "../src/RecipeDisplay";
 describe("RecipeDisplay", () => {
   it("displays the correct number of ingredients and instructions", () => {
     const item = {
+      id: "107",
       color: "blue",
       title: "Batman's Famous Chicken",
       ingredients: [

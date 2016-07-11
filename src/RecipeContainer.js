@@ -46,6 +46,7 @@ class RecipeContainer extends React.Component {
   handleAdd() {
     console.log("just tried to add");
     let sampleItem = {
+      id: Date.now(),
       color: "black",
       title: "Rad New Recipe",
       ingredients: ["1 cup love"],
@@ -69,8 +70,9 @@ class RecipeContainer extends React.Component {
 
   generateInitialData() {
     let items = [];
-    for (var i = 0; i < 8; i++) {
+    for (let i = 0; i < 8; i++) {
       items.push({
+        id: i,
         color: `#${i % 2}0${i % 9}7${i % 6}1`,
         title: `Recipe ${i}`,
         ingredients: ["salt", "chile", "paprika"],

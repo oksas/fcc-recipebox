@@ -8,6 +8,7 @@ import RecipeEditor from "../src/RecipeEditor";
 
 describe("RecipeTop", () => {
   const item = {
+    id: 5,
     color: "blue",
     title: "Batman's Famous Chicken",
     ingredients: ["salt", "pepper", "eggs"],

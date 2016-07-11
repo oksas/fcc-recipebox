@@ -10,7 +10,7 @@ class Box extends React.Component {
       translateY: spring(y)
     };
     return (
-      <Motion key={item.color} style={style}>
+      <Motion key={item.id} style={style}>
 				{ ({translateY, backgroundColor}) =>
 					<div
 						onClick={this.props.handleClick.bind(null, index)}
@@ -38,6 +38,7 @@ Box.propTypes = {
     units: React.PropTypes.string
   }).isRequired,
   item: React.PropTypes.shape({
+    id: React.PropTypes.number,
     color: React.PropTypes.string,
     title: React.PropTypes.string,
     ingredients: React.PropTypes.array,

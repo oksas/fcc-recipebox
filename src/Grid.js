@@ -16,7 +16,7 @@ class Grid extends React.Component {
           this.props.items.map((item, index) => {
             return (
 							<Box
-                key={item.title}
+                key={item.id}
                 gridConfig={this.props.gridConfig}
                 item={item}
                 index={index}
@@ -32,7 +32,6 @@ class Grid extends React.Component {
 
 Grid.propTypes = {
   gridConfig: React.PropTypes.shape({
-    rowLen: React.PropTypes.number,
     margin: React.PropTypes.number,
     width: React.PropTypes.number,
     units: React.PropTypes.string

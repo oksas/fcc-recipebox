@@ -1,7 +1,7 @@
 import React from "react";
 import CSSModules from "react-css-modules";
 import styles from "./styles/recipe-display.scss";
-
+// LLAMA FIX THE TWO KEYS HERE SOMEHOW
 class RecipeDisplay extends React.Component {
   render() {
     return (
@@ -31,6 +31,7 @@ class RecipeDisplay extends React.Component {
 
 RecipeDisplay.propTypes = {
   item: React.PropTypes.shape({
+    id: React.PropTypes.number,
     color: React.PropTypes.string,
     title: React.PropTypes.string,
     ingredients: React.PropTypes.array,

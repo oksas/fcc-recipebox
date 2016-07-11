@@ -8,8 +8,9 @@ import RecipeTop from "../src/RecipeTop";
 import Grid from "../src/Grid";
 
 var items = [];
-for (var i = 0; i < 8; i++) {
+for (let i = 0; i < 8; i++) {
   items.push({
+    id: i,
     color: "blue",
     title: `Recipe ${i}`,
     ingredients: ["salt", "chile", "paprika"],
@@ -32,6 +33,7 @@ describe("RecipeContainer", () => {
 
     it("properly saves updated recipes to state and storage", () => {
       const updatedItem = {
+        id: 500,
         color: "green",
         title: "Chicken Fun Time",
         ingredients: ["salt", "chicken", "paprika"],
