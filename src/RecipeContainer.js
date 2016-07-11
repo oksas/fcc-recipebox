@@ -44,11 +44,12 @@ class RecipeContainer extends React.Component {
   }
 
   handleAdd() {
+    console.log("just tried to add");
     let sampleItem = {
       color: "black",
       title: "Rad New Recipe",
-      ingredients: "1 cup love",
-      instructions: "Spread the love."
+      ingredients: ["1 cup love"],
+      instructions: ["Spread the love."]
     };
     let newItems = [].concat(sampleItem, this.state.items);
     this.setState({
@@ -58,6 +59,7 @@ class RecipeContainer extends React.Component {
   }
 
   handleDelete() {
+    console.log("just tried to delete");
     let newItems = [].concat(this.state.items.slice(1));
     this.setState({
       items: newItems
@@ -132,6 +134,8 @@ class RecipeContainer extends React.Component {
           editing={this.state.editing}
           handleSave={this.handleSave}
           handleCancel={this.handleCancel}
+          handleAdd={this.handleAdd}
+          handleDelete={this.handleDelete}
           switchModes={this.handleSwitch}
         />
 			</div>
