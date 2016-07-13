@@ -14,14 +14,14 @@ class RecipeDisplay extends React.Component {
 				</div>
 				<div styleName="ingredients">
           <h2 styleName="sub-header">Ingredients</h2>
-					{this.props.item.ingredients.map(item => (
-						<p key={item}>{item}</p>
+					{this.props.item.ingredients.map((item, index) => (
+						<p key={index}>{item}</p>
 					))}
 				</div>
 				<div styleName="instructions">
           <h2 styleName="sub-header">Instructions</h2>
-					{this.props.item.instructions.map(item => (
-						<p key={item}>{item}</p>
+					{this.props.item.instructions.map((item, index) => (
+						<p key={index}>{item}</p>
 					))}
 				</div>
 			</div>
