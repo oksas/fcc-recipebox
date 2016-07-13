@@ -26,7 +26,11 @@ h1, h2, h3, h4, h5, h6 {
 	color: white;
 	cursor: pointer;
 	position: absolute;
+	transition: opacity $transition;
 	text-align: center;
+	&:hover {
+		opacity: 0.5;
+	}
 }
 
 :global .box-label {

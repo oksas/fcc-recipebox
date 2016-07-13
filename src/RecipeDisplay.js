@@ -4,13 +4,26 @@ import styles from "./styles/recipe-display.scss";
 // LLAMA FIX THE TWO KEYS HERE SOMEHOW
 class RecipeDisplay extends React.Component {
   render() {
+    const deleteState = this.props.canDelete ? "action" : "action-disabled";
+
     return (
 			<div styleName="display">
 				<div styleName="title-wrap">
 					<h1 styleName="title">{this.props.item.title}</h1>
-          <button styleName="edit" onClick={this.props.switchModes}>change</button>
-          <button onClick={this.props.handleAdd}>add</button>
-          <button onClick={this.props.handleDelete}>delete</button>
+          <div styleName="action-wrap">
+            <button styleName="action" onClick={this.props.switchModes}>
+              <span styleName="icon">e</span>
+              edit
+            </button>
+            <button styleName="action" onClick={this.props.handleAdd}>
+              <span styleName="icon">+</span>
+              add
+            </button>
+            <button styleName={deleteState} onClick={this.props.handleDelete}>
+              <span styleName="icon">-</span>
+              delete
+            </button>
+          </div>
 				</div>
 				<div styleName="ingredients">
           <h2 styleName="sub-header">Ingredients</h2>
@@ -37,6 +50,7 @@ RecipeDisplay.propTypes = {
     ingredients: React.PropTypes.array,
     instructions: React.PropTypes.array
   }).isRequired,
+  canDelete: React.PropTypes.bool.isRequired,
   handleAdd: React.PropTypes.func.isRequired,
   handleDelete: React.PropTypes.func.isRequired,
   switchModes: React.PropTypes.func.isRequired

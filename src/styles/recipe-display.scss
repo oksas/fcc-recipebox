@@ -5,13 +5,20 @@
 	width: 100%;
 }
 
+.title,
+.action-wrap {
+	display: inline-block;
+	vertical-align: top;
+}
+
 .title-wrap {
-	margin-bottom: $major_spacing;
+	margin-bottom: $major_spacing / 2;
 	position: relative;
 }
 
 .title {
 	margin-top: 0;
+	width: 80%;
 }
 
 .title:first-child:first-letter {
@@ -20,11 +27,53 @@
 	margin-right: 0.5rem;
 }
 
-.edit {
+.action-wrap {
+	box-sizing: border-box;
+	padding-left: $minor_spacing;
+	width: 20%;
+}
+
+.action,
+.action:active,
+.action:focus {
 	background: none;
-	border: $thin_border;
-	position: absolute;
-	top: 0; right: 0;
+	border: none;
+	color: $accent_color;
+	cursor: pointer;
+	display: block;
+	font-weight: 700;
+	padding: 0;
+	text-transform: uppercase;
+}
+
+.action + .action {
+	margin-top: $minor_spacing / 4;
+}
+
+.action-disabled {
+	@extend .action;
+	cursor: inherit;
+	opacity: 0.4;
+}
+
+.icon {
+	border: 2px solid $accent_color;
+	border-radius: 100%;
+	display: inline-block;
+	height: 18px;
+	line-height: 1;
+	margin-right: 8px;
+	transition: all $transition;
+	width: 18px;
+}
+
+.action:hover,
+.action:focus,
+.action:active {
+	.icon {
+		background-color: $accent_color;
+		color: white;
+	}
 }
 
 $ingredients_width: 30%;

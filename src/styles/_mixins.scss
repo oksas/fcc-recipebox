@@ -1,6 +1,8 @@
 $text_primary: #212121;
 $text_secondary: #999999;
 
+$accent_color: #FF5252;
+
 $box_size: 2.5rem;
 $container_size: 50rem;
 
@@ -11,3 +13,5 @@ $major_spacing: 6rem;
 
 $breakpoint_medium: 35rem;
 $breakpoint_large: $container_size;
+
+$transition: 0.2s ease;

@@ -60,7 +60,8 @@ class RecipeContainer extends React.Component {
   }
 
   handleDelete() {
-    console.log("just tried to delete");
+    if (this.state.items.length < 2) return;
+
     let newItems = [].concat(this.state.items.slice(1));
     this.setState({
       items: newItems
@@ -134,6 +135,7 @@ class RecipeContainer extends React.Component {
 				<RecipeTop
           item={this.state.items[0]}
           editing={this.state.editing}
+          canDelete={this.state.items.length > 1}
           handleSave={this.handleSave}
           handleCancel={this.handleCancel}
           handleAdd={this.handleAdd}

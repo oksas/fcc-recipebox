@@ -31,6 +31,11 @@ describe("RecipeContainer", () => {
       // check to see that items has a length <= 1 and item 0 has the appropriate fields
     });
 
+    it("prevents deletion of a recipe when it is the last one remaining", () => {
+      // Also test if the delete button gets the proper styles!
+      expect(true).to.equal(false);
+    });
+
     it("properly saves updated recipes to state and storage", () => {
       const updatedItem = {
         id: 500,

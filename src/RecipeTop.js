@@ -13,6 +13,7 @@ class RecipeTop extends React.Component {
           ?	<div>
 					<RecipeDisplay item={this.props.item}
             switchModes={this.props.switchModes}
+            canDelete={this.props.canDelete}
             handleAdd={this.props.handleAdd}
             handleDelete={this.props.handleDelete} />
 					<RecipeEditor initialItem={this.props.item}
@@ -21,6 +22,7 @@ class RecipeTop extends React.Component {
 					</div>
 					: <RecipeDisplay item={this.props.item}
             switchModes={this.props.switchModes}
+            canDelete={this.props.canDelete}
             handleAdd={this.props.handleAdd}
             handleDelete={this.props.handleDelete} />
 				}
@@ -37,6 +39,7 @@ RecipeTop.propTypes = {
     ingredients: React.PropTypes.array,
     instructions: React.PropTypes.array
   }).isRequired,
+  canDelete: React.PropTypes.bool.isRequired,
   editing: React.PropTypes.bool.isRequired,
   handleSave: React.PropTypes.func.isRequired,
   handleCancel: React.PropTypes.func.isRequired,
