@@ -1,12 +1,12 @@
 import React from "react";
 import CSSModules from "react-css-modules";
 import styles from "./styles/recipe-display.scss";
-// LLAMA FIX THE TWO KEYS HERE SOMEHOW
-class RecipeDisplay extends React.Component {
-  render() {
-    const deleteState = this.props.canDelete ? "action" : "action-disabled";
 
-    return (
+class RecipeDisplay extends React.Component {
+	render() {
+		const deleteState = this.props.canDelete ? "action" : "action-disabled";
+
+		return (
 			<div styleName="display">
 				<div styleName="title-wrap">
 					<h1 styleName="title">{this.props.item.title}</h1>
@@ -39,21 +39,21 @@ class RecipeDisplay extends React.Component {
 				</div>
 			</div>
 		);
-  }
+	}
 }
 
 RecipeDisplay.propTypes = {
-  item: React.PropTypes.shape({
-    id: React.PropTypes.number,
-    color: React.PropTypes.string,
-    title: React.PropTypes.string,
-    ingredients: React.PropTypes.array,
-    instructions: React.PropTypes.array
-  }).isRequired,
-  canDelete: React.PropTypes.bool.isRequired,
-  handleAdd: React.PropTypes.func.isRequired,
-  handleDelete: React.PropTypes.func.isRequired,
-  switchModes: React.PropTypes.func.isRequired
+	item: React.PropTypes.shape({
+		id: React.PropTypes.number,
+		color: React.PropTypes.string,
+		title: React.PropTypes.string,
+		ingredients: React.PropTypes.array,
+		instructions: React.PropTypes.array
+	}).isRequired,
+	canDelete: React.PropTypes.bool.isRequired,
+	handleAdd: React.PropTypes.func.isRequired,
+	handleDelete: React.PropTypes.func.isRequired,
+	switchModes: React.PropTypes.func.isRequired
 };
 
 export default CSSModules(RecipeDisplay, styles);

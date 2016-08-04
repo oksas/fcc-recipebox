@@ -9,142 +9,142 @@ import Grid from "./Grid";
 // Make some of these methods static! Then figure out how binding works for those
 
 class RecipeContainer extends React.Component {
-  constructor() {
-    super();
+	constructor() {
+		super();
 
-    let items;
+		let items;
 
-    if (localStorage.getItem("_oksas_recipes")) {
-      items = JSON.parse(localStorage.getItem("_oksas_recipes"));
-    } else {
-      items = this.generateInitialData();
-    }
+		if (localStorage.getItem("_oksas_recipes")) {
+			items = JSON.parse(localStorage.getItem("_oksas_recipes"));
+		} else {
+			items = this.generateInitialData();
+		}
 
-    this.state = {
-      editing: false,
-      items,
-      gridConfig: {
-        margin: 0.75,
-        width: 2.5,
-        units: "rem"
-      }
-    };
+		this.state = {
+			editing: false,
+			items,
+			gridConfig: {
+				margin: 0.75,
+				width: 2.5,
+				units: "rem"
+			}
+		};
 
-    this.moveToFront = this.moveToFront.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-    this.handleSwitch = this.handleSwitch.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
-    this.handleAdd = this.handleAdd.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.saveLocalRecipes = this.saveLocalRecipes.bind(this);
-    this.generateInitialData = this.generateInitialData.bind(this);
+		this.moveToFront = this.moveToFront.bind(this);
+		this.handleClick = this.handleClick.bind(this);
+		this.handleSave = this.handleSave.bind(this);
+		this.handleSwitch = this.handleSwitch.bind(this);
+		this.handleCancel = this.handleCancel.bind(this);
+		this.handleAdd = this.handleAdd.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
+		this.saveLocalRecipes = this.saveLocalRecipes.bind(this);
+		this.generateInitialData = this.generateInitialData.bind(this);
 
-    this.saveLocalRecipes(this.state.items);
-  }
+		this.saveLocalRecipes(this.state.items);
+	}
 
-  handleAdd() {
-    console.log("just tried to add");
-    let sampleItem = {
-      id: Date.now(),
-      color: "black",
-      title: "Rad New Recipe",
-      ingredients: ["1 cup love"],
-      instructions: ["Spread the love."]
-    };
-    let newItems = [].concat(sampleItem, this.state.items);
-    this.setState({
-      items: newItems
-    });
-    this.saveLocalRecipes(newItems);
-  }
+	handleAdd() {
+		console.log("just tried to add");
+		let sampleItem = {
+			id: Date.now(),
+			color: "black",
+			title: "Rad New Recipe",
+			ingredients: ["1 cup love"],
+			instructions: ["Spread the love."]
+		};
+		let newItems = [].concat(sampleItem, this.state.items);
+		this.setState({
+			items: newItems
+		});
+		this.saveLocalRecipes(newItems);
+	}
 
-  handleDelete() {
-    if (this.state.items.length < 2) return;
+	handleDelete() {
+		if (this.state.items.length < 2) return;
 
-    let newItems = [].concat(this.state.items.slice(1));
-    this.setState({
-      items: newItems
-    });
-    this.saveLocalRecipes(newItems);
-  }
+		let newItems = [].concat(this.state.items.slice(1));
+		this.setState({
+			items: newItems
+		});
+		this.saveLocalRecipes(newItems);
+	}
 
-  generateInitialData() {
-    let items = [];
-    for (let i = 0; i < 8; i++) {
-      items.push({
-        id: i,
-        color: `#${i % 2}0${i % 9}7${i % 6}1`,
-        title: `Recipe ${i}`,
-        ingredients: ["salt", "chile", "paprika"],
-        instructions: ["bake", "shake", "consume"]
-      });
-    }
+	generateInitialData() {
+		let items = [];
+		for (let i = 0; i < 8; i++) {
+			items.push({
+				id: i,
+				color: `#${i % 2}0${i % 9}7${i % 6}1`,
+				title: `Recipe ${i}`,
+				ingredients: ["salt", "chile", "paprika"],
+				instructions: ["bake", "shake", "consume"]
+			});
+		}
 
-    return items;
-  }
+		return items;
+	}
 
-  saveLocalRecipes(items) {
-    // What does the below line return? Can use its return value to handle errors?
-    localStorage.setItem("_oksas_recipes", JSON.stringify(items));
-  }
+	saveLocalRecipes(items) {
+		// What does the below line return? Can use its return value to handle errors?
+		localStorage.setItem("_oksas_recipes", JSON.stringify(items));
+	}
 
-  moveToFront(oldArr, index) {
-    let newArr = [...oldArr];
-    let item = newArr.splice(index, 1)[0];
-    newArr.unshift(item);
-    return newArr;
-  }
+	moveToFront(oldArr, index) {
+		let newArr = [...oldArr];
+		let item = newArr.splice(index, 1)[0];
+		newArr.unshift(item);
+		return newArr;
+	}
 
-  handleClick(index) {
-    this.setState({
-      editing: false,
-      items: this.moveToFront(this.state.items, index)
-    });
-  }
+	handleClick(index) {
+		this.setState({
+			editing: false,
+			items: this.moveToFront(this.state.items, index)
+		});
+	}
 
-  handleSave(item) {
-    let newItems = [].concat(item, this.state.items.slice(1));
-    this.setState({
-      editing: false,
-      items: newItems
-    });
-    this.saveLocalRecipes(newItems);
-  }
+	handleSave(item) {
+		let newItems = [].concat(item, this.state.items.slice(1));
+		this.setState({
+			editing: false,
+			items: newItems
+		});
+		this.saveLocalRecipes(newItems);
+	}
 
-  handleSwitch() {
-    this.setState({
-      editing: !this.state.editing
-    });
-  }
+	handleSwitch() {
+		this.setState({
+			editing: !this.state.editing
+		});
+	}
 
-  handleCancel() {
-    this.setState({
-      editing: false
-    });
-  }
+	handleCancel() {
+		this.setState({
+			editing: false
+		});
+	}
 
-  render() {
-    return (
+	render() {
+		return (
 			<div styleName="container">
-        <Grid
-          gridConfig={this.state.gridConfig}
-          handleClick={this.handleClick}
-          items={this.state.items}
-        />
-				<RecipeTop
-          item={this.state.items[0]}
-          editing={this.state.editing}
-          canDelete={this.state.items.length > 1}
-          handleSave={this.handleSave}
-          handleCancel={this.handleCancel}
-          handleAdd={this.handleAdd}
-          handleDelete={this.handleDelete}
-          switchModes={this.handleSwitch}
-        />
+			<Grid
+			gridConfig={this.state.gridConfig}
+			handleClick={this.handleClick}
+			items={this.state.items}
+			/>
+			<RecipeTop
+			item={this.state.items[0]}
+			editing={this.state.editing}
+			canDelete={this.state.items.length > 1}
+			handleSave={this.handleSave}
+			handleCancel={this.handleCancel}
+			handleAdd={this.handleAdd}
+			handleDelete={this.handleDelete}
+			switchModes={this.handleSwitch}
+			/>
 			</div>
 		);
-  }
+	}
 }
 
 export default CSSModules(RecipeContainer, styles);

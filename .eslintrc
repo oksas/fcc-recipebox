@@ -9,7 +9,8 @@
     "semi": ["error", "always"],
     "space-before-function-paren": ["error", "never"],
     "quotes": ["error", "double"],
-    "jsx-quotes": ["error", "prefer-double"]
+    "jsx-quotes": ["error", "prefer-double"],
+    "indent": ["error", "tab"]
   },
   "plugins": [
     "react"

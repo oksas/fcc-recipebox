@@ -7,103 +7,120 @@ import RecipeContainer from "../src/RecipeContainer";
 import RecipeTop from "../src/RecipeTop";
 import Grid from "../src/Grid";
 
-var items = [];
-for (let i = 0; i < 8; i++) {
-  items.push({
-    id: i,
-    color: "blue",
-    title: `Recipe ${i}`,
-    ingredients: ["salt", "chile", "paprika"],
-    instructions: ["bake", "shake", "consume"]
-  });
-}
+let sampleItem = {
+	id: Date.now(),
+	color: "black",
+	title: "Rad New Recipe",
+	ingredients: ["1 cup love"],
+	instructions: ["Spread the love."]
+};
 
 describe("RecipeContainer", () => {
-  const wrapper = shallow(<RecipeContainer />);
+	// Define wrapper for the `it` tests in this scope level
+	// But use let so we can use beforeEach in child scopes if necessary
+	let wrapper = shallow(<RecipeContainer />);
 
-  describe("Data saving and loading", () => {
-    it("pulls initial data from localStorage if it exists", () => {
-      // init the appropriate teardown here?
-      // expect(wrapper.state().items).to.equal(localStorage._oksas_recipes);
-    });
+	describe("Data saving and loading", () => {
+		it("pulls initial data from localStorage if it exists", () => {
+			localStorage.setItem("_oksas_recipes", JSON.stringify([sampleItem]));
+			wrapper = shallow(<RecipeContainer />);
 
-    it("creates sample data if none exist in localStorage", () => {
-      // check to see that items has a length <= 1 and item 0 has the appropriate fields
-    });
+			expect(wrapper.state().items).to.eql(JSON.parse(localStorage._oksas_recipes));
+		});
 
-    it("prevents deletion of a recipe when it is the last one remaining", () => {
-      // Also test if the delete button gets the proper styles!
-      expect(true).to.equal(false);
-    });
+		it("creates sample data if none exist in localStorage", () => {
+			localStorage.removeItem("_oksas_recipes");
+			wrapper = shallow(<RecipeContainer />);
 
-    it("properly saves updated recipes to state and storage", () => {
-      const updatedItem = {
-        id: 500,
-        color: "green",
-        title: "Chicken Fun Time",
-        ingredients: ["salt", "chicken", "paprika"],
-        instructions: ["bake", "stir", "consume"]
-      };
-      const initialLength = wrapper.state().items.length;
+			expect(wrapper.state().items.length).to.be.above(0);
+		});
 
-      wrapper.instance().handleSave(updatedItem);
+		it("can delete items", () => {
+			wrapper.instance().handleAdd();
+			const lengthBefore = wrapper.state().items.length;
 
-      let expectedStateItems = wrapper.state().items;
-      let expectedStorageItems = JSON.parse(localStorage.getItem("_oksas_recipes"));
+			wrapper.instance().handleDelete();
+			expect(wrapper.state().items.length).to.equal(lengthBefore - 1);
+		});
 
-      expect(expectedStateItems[0]).to.eql(updatedItem);
-      expect(expectedStateItems.length).to.equal(initialLength);
+		it("prevents deletion of a recipe when it is the last one remaining", () => {
+			wrapper.setState({ items: [sampleItem] });
 
-      expect(expectedStorageItems[0]).to.eql(updatedItem);
-      expect(expectedStorageItems.length).to.equal(initialLength);
-    });
+			expect(wrapper.state().items.length).to.equal(1);
 
-    it("properly adds new recipes to state and storage", () => {
-      const initialLength = wrapper.state().items.length;
+			wrapper.instance().handleDelete();
 
-      wrapper.instance().handleAdd();
+			expect(wrapper.state().items.length).to.equal(1);
+		});
 
-      let expectedStateItems = wrapper.state().items;
-      let expectedStorageItems = JSON.parse(localStorage.getItem("_oksas_recipes"));
+		it("properly saves updated recipes to state and storage", () => {
+			const updatedItem = {
+				id: 500,
+				color: "green",
+				title: "Chicken Fun Time",
+				ingredients: ["salt", "chicken", "paprika"],
+				instructions: ["bake", "stir", "consume"]
+			};
+			const initialLength = wrapper.state().items.length;
 
-      expect(expectedStateItems.length).to.equal(initialLength + 1);
+			wrapper.instance().handleSave(updatedItem);
 
-      expect(expectedStorageItems.length).to.equal(initialLength + 1);
-    });
+			let expectedStateItems = wrapper.state().items;
+			let expectedStorageItems = JSON.parse(localStorage.getItem("_oksas_recipes"));
 
-    it("properly removes new recipes from state and storage", () => {
-      const itemToDelete = Object.assign({}, wrapper.state().items[0]);
-      const initialLength = wrapper.state().items.length;
+			expect(expectedStateItems[0]).to.eql(updatedItem);
+			expect(expectedStateItems.length).to.equal(initialLength);
 
-      wrapper.instance().handleDelete();
+			expect(expectedStorageItems[0]).to.eql(updatedItem);
+			expect(expectedStorageItems.length).to.equal(initialLength);
+		});
 
-      let expectedStateItems = wrapper.state().items;
-      let expectedStorageItems = JSON.parse(localStorage.getItem("_oksas_recipes"));
+		it("properly adds new recipes to state and storage", () => {
+			const initialLength = wrapper.state().items.length;
 
-      expect(expectedStateItems[0]).to.not.eql(itemToDelete);
-      expect(expectedStateItems.length).to.equal(initialLength - 1);
+			wrapper.instance().handleAdd();
 
-      expect(expectedStorageItems[0]).to.not.eql(itemToDelete);
-      expect(expectedStorageItems.length).to.equal(initialLength - 1);
-    });
-  });
+			let expectedStateItems = wrapper.state().items;
+			let expectedStorageItems = JSON.parse(localStorage.getItem("_oksas_recipes"));
 
-  it("can change an array in an immutable way", () => {
-    const initial = [1, 2, 3, 4];
-    const expected1 = [4, 1, 2, 3];
-    const expected2 = [3, 1, 2, 4];
-    const expected3 = [2, 1, 3, 4];
-    expect(RecipeContainer.prototype.moveToFront(initial, 3)).to.eql(expected1);
-    expect(RecipeContainer.prototype.moveToFront(initial, 2)).to.eql(expected2);
-    expect(RecipeContainer.prototype.moveToFront(initial, 1)).to.eql(expected3);
-  });
+			expect(expectedStateItems.length).to.equal(initialLength + 1);
 
-  it("renders a grid and recipe top", () => {
-    expect(wrapper.containsAllMatchingElements([
-      <Grid />,
-      <RecipeTop />
-    ])).to.equal(true);
-  });
+			expect(expectedStorageItems.length).to.equal(initialLength + 1);
+		});
 
-  // Add some tests to check that state is properly updated with handleClick
+		it("properly removes new recipes from state and storage", () => {
+			const itemToDelete = Object.assign({}, wrapper.state().items[0]);
+			const initialLength = wrapper.state().items.length;
+
+			wrapper.instance().handleDelete();
+
+			let expectedStateItems = wrapper.state().items;
+			let expectedStorageItems = JSON.parse(localStorage.getItem("_oksas_recipes"));
+
+			expect(expectedStateItems[0]).to.not.eql(itemToDelete);
+			expect(expectedStateItems.length).to.equal(initialLength - 1);
+
+			expect(expectedStorageItems[0]).to.not.eql(itemToDelete);
+			expect(expectedStorageItems.length).to.equal(initialLength - 1);
+		});
+	});
+
+	it("can change an array in an immutable way", () => {
+		const initial = [1, 2, 3, 4];
+		const expected1 = [4, 1, 2, 3];
+		const expected2 = [3, 1, 2, 4];
+		const expected3 = [2, 1, 3, 4];
+		expect(RecipeContainer.prototype.moveToFront(initial, 3)).to.eql(expected1);
+		expect(RecipeContainer.prototype.moveToFront(initial, 2)).to.eql(expected2);
+		expect(RecipeContainer.prototype.moveToFront(initial, 1)).to.eql(expected3);
+	});
+
+	it("renders a grid and recipe top", () => {
+		expect(wrapper.containsAllMatchingElements([
+			<Grid />,
+			<RecipeTop />
+		])).to.equal(true);
+	});
+
+	// Add some tests to check that state is properly updated with handleClick
 });
