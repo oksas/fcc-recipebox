@@ -1,13 +1,51 @@
+@import "mixins.scss";
+
 .wrapper {
-  background: rgba(0,0,0,0.5);
+	box-sizing: border-box;
+	background: rgba(0, 0, 0, 0.3);
   padding: 2rem;
   position: absolute;
+	left: 0;
   top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 100;
 }
 
 .editor {
+	box-sizing: border-box;
+	background: $white;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
   color: black;
-  padding: 2rem;
+  padding: $minor_spacing;
+	width: 50%;
+	height: 50%;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+
+	input,
+	textarea {
+		max-width: 100%;
+		width: 100%;
+	}
+}
+
+// This is silly; .icon and .action are defined in two places. I made them both global styles but then just reverted to having them copied+pasted in two different files (this and recipe-display.scss). The best way to do it would be to just abstract them into their own reusable component, but that also seems kind of unnecessary now given they're only used in two places. Lesson learned, though
+
+.icon {
+	border: 2px solid $accent_color;
+	border-radius: 100%;
+	display: inline-block;
+	height: 18px;
+	line-height: 1;
+	margin-right: 8px;
+	transition: all $transition;
+	width: 18px;
 }
 
 .title {
@@ -20,4 +58,36 @@
 
 .instructions {
   color: black;
+}
+
+.action,
+.action:active,
+.action:focus {
+	background: none;
+	border: none;
+	color: $accent_color;
+	cursor: pointer;
+	display: block;
+	font-weight: 700;
+	padding: 0;
+	text-transform: uppercase;
+}
+
+.action + .action {
+	margin-top: $minor_spacing / 4;
+}
+
+.action-disabled {
+	@extend .action;
+	cursor: inherit;
+	opacity: 0.4;
+}
+
+.action:hover,
+.action:focus,
+.action:active {
+	.icon {
+		background-color: $accent_color;
+		color: white;
+	}
 }
