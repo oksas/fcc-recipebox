@@ -1,15 +1,19 @@
-var webpack = require("webpack");
-var WebpackDevServer = require("webpack-dev-server");
-var config = require("./webpack.config");
+var path = require("path");
+var express = require("express");
+var app = express();
 
-new WebpackDevServer(webpack(config), {
-	publicPath: config.output.publicPath,
-	hot: true,
-	historyApiFallback: true
-}).listen(7777, "localhost", function(err, result) {
+var port = process.env.PORT || 4040;
+
+app.use(express.static(__dirname));
+
+app.get("/*", function(req, res) {
+	res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.listen(port, function(err) {
 	if (err) {
-		return console.log(err);
+		return console.error(err);
 	}
 
-	console.log("Server listening at http://localhost:7777");
+	console.log(`Server listening on port ${port}`);
 });
