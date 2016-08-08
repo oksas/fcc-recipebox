@@ -17,9 +17,11 @@
 	background: $white;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
   color: black;
-  padding: $minor_spacing;
-	width: 50%;
-	height: 50%;
+  padding: $minor_spacing $minor_spacing $minor_spacing*2;
+	width: 94%;
+	max-width: 30rem;
+	height: 94%;
+	max-height: 30rem;
 
 	position: absolute;
 	top: 0;
@@ -30,12 +32,52 @@
 
 	input,
 	textarea {
+		box-sizing: border-box;
 		max-width: 100%;
 		width: 100%;
+		margin-bottom: $minor_spacing;
+	}
+
+	input {
+		border: none;
+		border-bottom: 1px solid $text_secondary;
+		padding-bottom: 4px;
+		transition: border-bottom-color $transition;
+		display: inline;
+		opacity: 0.5;
+
+		&:hover,
+		&:active,
+		&:focus {
+			border-bottom-color: $accent_color;
+			opacity: 1;
+		}
+	}
+
+	textarea {
+		border: 1px solid $text_secondary;
+		transition: border-color $transition;
+		opacity: 0.5;
+
+		&:hover,
+		&:active,
+		&:focus {
+			border-color: $accent_color;
+			opacity: 1;
+		}
 	}
 }
 
+.input-label {
+	color: $accent_color;
+	text-transform: uppercase;
+	font-size: 10px;
+	letter-spacing: 2px;
+	font-weight: 700;
+}
+
 // This is silly; .icon and .action are defined in two places. I made them both global styles but then just reverted to having them copied+pasted in two different files (this and recipe-display.scss). The best way to do it would be to just abstract them into their own reusable component, but that also seems kind of unnecessary now given they're only used in two places. Lesson learned, though
+// Also, these are not *exactly* the same; there are minor style differences between these and the ones in recipe-display.scss. Still would be better to extract them into separate component though and have any additional conditional component-specific styles applied
 
 .icon {
 	border: 2px solid $accent_color;
@@ -43,9 +85,22 @@
 	display: inline-block;
 	height: 18px;
 	line-height: 1;
-	margin-right: 8px;
 	transition: all $transition;
 	width: 18px;
+	position: relative;
+
+	svg {
+		fill: $accent_color;
+		transition: fill $transition;
+		width: 16px;
+		height: 16px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+	}
 }
 
 .title {
@@ -68,19 +123,10 @@
 	color: $accent_color;
 	cursor: pointer;
 	display: block;
-	font-weight: 700;
 	padding: 0;
 	text-transform: uppercase;
-}
-
-.action + .action {
-	margin-top: $minor_spacing / 4;
-}
-
-.action-disabled {
-	@extend .action;
-	cursor: inherit;
-	opacity: 0.4;
+	width: 22px;
+	height: 22px;
 }
 
 .action:hover,
@@ -88,6 +134,37 @@
 .action:active {
 	.icon {
 		background-color: $accent_color;
-		color: white;
+
+		svg {
+			fill: $white;
+		}
 	}
+}
+
+.action-disabled:hover,
+.action-disabled:focus,
+.action-disabled:active {
+	.icon {
+		background-color: $white;
+
+		svg {
+			fill: $accent_color;
+		}
+	}
+}
+
+.action-left,
+.action-right {
+	@extend .action;
+	bottom: $minor_spacing;
+}
+
+.action-left {
+	position: absolute;
+	left: $minor_spacing;
+}
+
+.action-right {
+	position: absolute;
+	right: $minor_spacing;
 }

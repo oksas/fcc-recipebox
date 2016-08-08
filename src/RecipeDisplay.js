@@ -1,6 +1,11 @@
 import React from "react";
 import CSSModules from "react-css-modules";
+import InlineSVG from "svg-inline-react";
 import styles from "./styles/recipe-display.scss";
+
+import plusSVG from "./icons/plus.svg";
+import minusSVG from "./icons/minus.svg";
+import editSVG from "./icons/edit.svg";
 
 class RecipeDisplay extends React.Component {
 	render() {
@@ -12,16 +17,19 @@ class RecipeDisplay extends React.Component {
 					<h1 styleName="title">{this.props.item.title}</h1>
           <div styleName="action-wrap">
             <button styleName="action" onClick={this.props.switchModes}>
-              <span styleName="icon">e</span>
-              edit
+              <span styleName="icon">
+								<InlineSVG src={editSVG} />
+							</span>
             </button>
             <button styleName="action" onClick={this.props.handleAdd}>
-              <span styleName="icon">+</span>
-              add
+              <span styleName="icon">
+								<InlineSVG element="span" src={plusSVG} />
+							</span>
             </button>
             <button styleName={deleteState} onClick={this.props.handleDelete}>
-              <span styleName="icon">-</span>
-              delete
+              <span styleName="icon">
+								<InlineSVG element="span" src={minusSVG} />
+							</span>
             </button>
           </div>
 				</div>

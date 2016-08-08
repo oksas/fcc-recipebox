@@ -1,6 +1,10 @@
 import React from "react";
 import CSSModules from "react-css-modules";
+import InlineSVG from "svg-inline-react";
 import styles from "./styles/recipe-editor.scss";
+
+import checkSVG from "./icons/check.svg";
+import closeSVG from "./icons/close.svg";
 
 class RecipeEditor extends React.Component {
 	constructor(props) {
@@ -43,36 +47,42 @@ class RecipeEditor extends React.Component {
       <div styleName="wrapper">
         <div styleName="editor">
           <div styleName="title">
-            <input
+						<span styleName="input-label">Recipe Name</span>
+						<input
               name="title"
               onChange={this.handleChange}
               value={this.state.item.title} />
           </div>
           <div styleName="title">
+						<span styleName="input-label">Color</span>
             <input
               name="color"
               onChange={this.handleChange}
               value={this.state.item.color} />
           </div>
           <div styleName="ingredients">
+						<span styleName="input-label">Ingredients</span>
             <textarea
               name="ingredients"
               onChange={this.handleChange}
               value={this.state.item.ingredients.join("\n")} />
           </div>
           <div styleName="instructions">
+						<span styleName="input-label">Instructions</span>
             <textarea
               name="instructions"
               onChange={this.handleChange}
               value={this.state.item.instructions.join("\n")} />
           </div>
-          <button styleName="action" onClick={this.handleSave}>
-						<span styleName="icon">-</span>
-						save
+          <button styleName="action-right" onClick={this.handleSave}>
+						<span styleName="icon">
+							<InlineSVG src={checkSVG} />
+						</span>
 					</button>
-          <button styleName="action" onClick={this.handleCancel}>
-						<span styleName="icon">-</span>
-						cancel
+          <button styleName="action-left" onClick={this.handleCancel}>
+						<span styleName="icon">
+							<InlineSVG src={closeSVG} />
+						</span>
 					</button>
         </div>
       </div>

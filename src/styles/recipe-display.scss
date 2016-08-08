@@ -29,19 +29,9 @@
 
 .action-wrap {
 	box-sizing: border-box;
-	padding-left: $minor_spacing;
-	width: 20%;
-}
-
-.icon {
-	border: 2px solid $accent_color;
-	border-radius: 100%;
-	display: inline-block;
-	height: 18px;
-	line-height: 1;
-	margin-right: 8px;
-	transition: all $transition;
-	width: 18px;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 .action,
@@ -72,7 +62,47 @@
 .action:active {
 	.icon {
 		background-color: $accent_color;
-		color: white;
+
+		svg {
+			fill: $white;
+		}
+	}
+}
+
+.action-disabled:hover,
+.action-disabled:focus,
+.action-disabled:active {
+	.icon {
+		background-color: $white;
+
+		svg {
+			fill: $accent_color;
+		}
+	}
+}
+
+.icon {
+	border: 2px solid $accent_color;
+	border-radius: 100%;
+	display: inline-block;
+	height: 18px;
+	line-height: 1;
+	margin-right: 8px;
+	transition: all $transition;
+	width: 18px;
+	position: relative;
+
+	svg {
+		fill: $accent_color;
+		transition: fill $transition;
+		width: 16px;
+		height: 16px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
 	}
 }
 
