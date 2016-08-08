@@ -24,6 +24,9 @@
 .title:first-child:first-letter {
 	float: left;
 	font-size: 8rem;
+	// This line height is just to make things look right on webkit
+	// Without it, the top of the letter has a margin you can't get rid of, so the dropcaps is misaligned
+	line-height: 6rem;
 	margin-right: 0.5rem;
 }
 
