@@ -9,7 +9,7 @@ import Grid from "../src/Grid";
 
 let sampleItem = {
 	id: Date.now(),
-	color: "black",
+	color: "turquoise",
 	title: "Rad New Recipe",
 	ingredients: ["1 cup love"],
 	instructions: ["Spread the love."]

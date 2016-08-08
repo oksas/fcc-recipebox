@@ -44,10 +44,9 @@ class RecipeContainer extends React.Component {
 	}
 
 	handleAdd() {
-		console.log("just tried to add");
 		let sampleItem = {
 			id: Date.now(),
-			color: "black",
+			color: "#ff5252",
 			title: "Rad New Recipe",
 			ingredients: ["1 cup love"],
 			instructions: ["Spread the love."]
@@ -70,18 +69,15 @@ class RecipeContainer extends React.Component {
 	}
 
 	generateInitialData() {
-		let items = [];
-		for (let i = 0; i < 8; i++) {
-			items.push({
-				id: i,
-				color: `#${i % 2}0${i % 9}7${i % 6}1`,
-				title: `Recipe ${i}`,
-				ingredients: ["salt", "chile", "paprika"],
-				instructions: ["bake", "shake", "consume"]
-			});
-		}
+		let sampleItem = {
+			id: Date.now(),
+			color: "#ff5252",
+			title: "Rad New Recipe",
+			ingredients: ["1 cup love"],
+			instructions: ["Spread the love."]
+		};
 
-		return items;
+		return [sampleItem];
 	}
 
 	saveLocalRecipes(items) {
