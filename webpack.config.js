@@ -1,21 +1,31 @@
 var path = require("path");
 var webpack = require("webpack");
 
-module.exports = {
-	devtool: "eval",
-	entry: [
+var isProduction = process.argv.indexOf("--prod") !== -1;
+var plugins = [];
+var entry;
+
+if (isProduction) {
+	plugins.push(new webpack.optimize.UglifyJsPlugin());
+	entry = [
 		"webpack-dev-server/client?http://localhost:7777",
 		"webpack/hot/only-dev-server",
 		"./src/index"
-	],
+	];
+} else {
+	plugins.push(new webpack.HotModuleReplacementPlugin());
+	entry = "./src/index";
+}
+
+module.exports = {
+	devtool: "eval",
+	entry: entry,
 	output: {
 		path: path.join(__dirname, "dist"),
 		filename: "bundle.js",
 		publicPath: "/static/"
 	},
-	plugins: [
-		new webpack.HotModuleReplacementPlugin()
-	],
+	plugins: plugins,
 	module: {
 		loaders: [{
 			test: /\.js$/,

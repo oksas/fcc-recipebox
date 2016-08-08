@@ -32,20 +32,20 @@ class RecipeTop extends React.Component {
 }
 
 RecipeTop.propTypes = {
-  item: React.PropTypes.shape({
-    id: React.PropTypes.number,
-    color: React.PropTypes.string,
-    title: React.PropTypes.string,
-    ingredients: React.PropTypes.array,
-    instructions: React.PropTypes.array
-  }).isRequired,
-  canDelete: React.PropTypes.bool.isRequired,
-  editing: React.PropTypes.bool.isRequired,
-  handleSave: React.PropTypes.func.isRequired,
-  handleCancel: React.PropTypes.func.isRequired,
-  handleAdd: React.PropTypes.func.isRequired,
-  handleDelete: React.PropTypes.func.isRequired,
-  switchModes: React.PropTypes.func.isRequired
+	item: React.PropTypes.shape({
+		id: React.PropTypes.number,
+		color: React.PropTypes.string,
+		title: React.PropTypes.string,
+		ingredients: React.PropTypes.array,
+		instructions: React.PropTypes.array
+	}).isRequired,
+	canDelete: React.PropTypes.bool.isRequired,
+	editing: React.PropTypes.bool.isRequired,
+	handleSave: React.PropTypes.func.isRequired,
+	handleCancel: React.PropTypes.func.isRequired,
+	handleAdd: React.PropTypes.func.isRequired,
+	handleDelete: React.PropTypes.func.isRequired,
+	switchModes: React.PropTypes.func.isRequired
 };
 
 export default CSSModules(RecipeTop, styles);

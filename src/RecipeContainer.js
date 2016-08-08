@@ -6,7 +6,6 @@ import styles from "./styles/recipe-container.scss";
 
 import RecipeTop from "./RecipeTop";
 import Grid from "./Grid";
-// Make some of these methods static! Then figure out how binding works for those
 
 class RecipeContainer extends React.Component {
 	constructor() {
@@ -39,23 +38,28 @@ class RecipeContainer extends React.Component {
 		this.handleDelete = this.handleDelete.bind(this);
 		this.saveLocalRecipes = this.saveLocalRecipes.bind(this);
 		this.generateInitialData = this.generateInitialData.bind(this);
+		this.getSampleItem = this.getSampleItem.bind(this);
 
 		this.saveLocalRecipes(this.state.items);
 	}
 
 	handleAdd() {
-		let sampleItem = {
+		let sampleItem = this.getSampleItem();
+		let newItems = [].concat(sampleItem, this.state.items);
+		this.setState({
+			items: newItems
+		});
+		this.saveLocalRecipes(newItems);
+	}
+
+	getSampleItem() {
+		return {
 			id: Date.now(),
 			color: "#ff5252",
 			title: "Rad New Recipe",
 			ingredients: ["1 cup love"],
 			instructions: ["Spread the love."]
 		};
-		let newItems = [].concat(sampleItem, this.state.items);
-		this.setState({
-			items: newItems
-		});
-		this.saveLocalRecipes(newItems);
 	}
 
 	handleDelete() {
@@ -69,15 +73,7 @@ class RecipeContainer extends React.Component {
 	}
 
 	generateInitialData() {
-		let sampleItem = {
-			id: Date.now(),
-			color: "#ff5252",
-			title: "Rad New Recipe",
-			ingredients: ["1 cup love"],
-			instructions: ["Spread the love."]
-		};
-
-		return [sampleItem];
+		return [this.getSampleItem()];
 	}
 
 	saveLocalRecipes(items) {

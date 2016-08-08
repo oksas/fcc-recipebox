@@ -42,7 +42,6 @@ class RecipeEditor extends React.Component {
 	}
 
 	render() {
-		// This should fade in and fall from the top, subtly, like on my site, just in reverse
 		return (
       <div styleName="wrapper">
         <div styleName="editor">

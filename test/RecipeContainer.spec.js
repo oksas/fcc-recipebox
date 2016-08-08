@@ -121,6 +121,4 @@ describe("RecipeContainer", () => {
 			<RecipeTop />
 		])).to.equal(true);
 	});
-
-	// Add some tests to check that state is properly updated with handleClick
 });
