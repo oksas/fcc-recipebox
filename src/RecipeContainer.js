@@ -55,10 +55,14 @@ class RecipeContainer extends React.Component {
 	getSampleItem() {
 		return {
 			id: Date.now(),
-			color: "#ff5252",
+			color: "#turquoise",
 			title: "Rad New Recipe",
-			ingredients: ["1 cup love"],
-			instructions: ["Spread the love."]
+			ingredients: ["2 Phoenix Downs", "2 Ether", "5 High Potions"],
+			instructions: [
+				"Assemble ingredients in large cauldron.",
+				"Whisper sweet nothings to the cauldron to woo the flavor.",
+				"Let cauldron cool. Serve with a glass of refreshing ice-cold water."
+			]
 		};
 	}
 
