@@ -2,5 +2,8 @@
 
 .top {
   flex-grow: 1;
-  margin: 0 0 $minor_spacing $minor_spacing;
+  margin: 0 0 $minor_spacing $mini_spacing;
+	@media (min-width: $breakpoint_medium) {
+		margin: 0 0 $minor_spacing $minor_spacing;
+	}
 }

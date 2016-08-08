@@ -6,8 +6,8 @@ import RecipeDisplay from "./RecipeDisplay";
 import RecipeEditor from "./RecipeEditor";
 
 class RecipeTop extends React.Component {
-  render() {
-    return (
+	render() {
+		return (
 			<div styleName="top">
 				{this.props.editing
           ?	<div>
@@ -28,7 +28,7 @@ class RecipeTop extends React.Component {
 				}
 			</div>
 		);
-  }
+	}
 }
 
 RecipeTop.propTypes = {
