@@ -55,7 +55,7 @@ class RecipeContainer extends React.Component {
 	getSampleItem() {
 		return {
 			id: Date.now(),
-			color: "#turquoise",
+			color: "turquoise",
 			title: "Rad New Recipe",
 			ingredients: ["2 Phoenix Downs", "2 Ether", "5 High Potions"],
 			instructions: [

@@ -3,18 +3,20 @@ var webpack = require("webpack");
 
 var isProduction = process.argv.indexOf("--prod") !== -1;
 var plugins = [];
+var jsLoaders = ["babel"];
 var entry;
 
 if (isProduction) {
 	plugins.push(new webpack.optimize.UglifyJsPlugin());
+	entry = "./src/index";
+} else {
+	plugins.push(new webpack.HotModuleReplacementPlugin());
 	entry = [
 		"webpack-dev-server/client?http://localhost:7777",
 		"webpack/hot/only-dev-server",
 		"./src/index"
 	];
-} else {
-	plugins.push(new webpack.HotModuleReplacementPlugin());
-	entry = "./src/index";
+	jsLoaders.unshift("react-hot");
 }
 
 module.exports = {
@@ -23,13 +25,13 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, "dist"),
 		filename: "bundle.js",
-		publicPath: "/static/"
+		publicPath: "/dist/"
 	},
 	plugins: plugins,
 	module: {
 		loaders: [{
 			test: /\.js$/,
-			loaders: ["react-hot", "babel"],
+			loaders: jsLoaders,
 			include: path.join(__dirname, "src")
 		},
 		{
